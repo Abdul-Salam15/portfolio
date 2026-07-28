@@ -105,7 +105,7 @@ export const work: WorkItem[] = [
     clientLogo: "/snugsbaby-logo.png",
     icon: Baby,
     title: "Snugs Baby",
-    desc: "An AI weaning assistant for breastfeeding and early-stage mothers, built full-stack into the brand's existing Shopify store. Runs on OpenAI's GPT-4o, grounded in NHS and WHO guidance via a RAG pipeline (FAISS + embeddings), with per-baby profiles and age-aware advice, voice, photo and document input, automatic safety checks on every response, food-introduction tracking and matched product recommendations from the Shopify catalogue.",
+    desc: "An AI weaning assistant for breastfeeding and early-stage mothers, built full-stack into the brand's existing Shopify store. Runs on OpenAI, grounded in NHS and WHO guidance via a RAG pipeline (FAISS + embeddings), with per-baby profiles and age-aware advice, voice, photo and document input, automatic safety checks on every response, food-introduction tracking and matched product recommendations from the Shopify catalogue.",
     role: "Full-stack · AI, Backend & Frontend",
     period: "2025",
     category: "Full-stack",
