@@ -6,7 +6,13 @@ import { cn } from "@/lib/utils"
 /**
  * First-load intro: cycles a few words, reveals the brand, then a four-panel
  * curtain lifts to expose the page. Plays once per session, and is skipped
- * entirely for reduced-motion users. Rendered on the home page only.
+ * entirely for reduced-motion users.
+ *
+ * Rendered on every top-level page, not just home, because plenty of visitors
+ * arrive on a shared deep link (/portfolio, /resume) and would otherwise never
+ * see it. The `introSeen` session flag means only the FIRST page opened plays
+ * it; every later page in that session renders nothing.
+ *
  * Timing mirrors brdge.ai's intro (wordDur 780, out lead 240, brand 560).
  */
 const WORDS = ["Backend.", "Agentic AI.", "LLMs.", "RAG.", "Cloud & DevOps."]
@@ -32,11 +38,25 @@ function withAccentDot(text: string) {
   )
 }
 
+/**
+ * Module scope, so it resets on a real document load but survives client-side
+ * navigation. Without it, moving from /about to /portfolio would remount this
+ * component and paint the opaque curtain for one frame before the effect could
+ * hide it, i.e. a blue flash on every in-app link.
+ */
+let mountedThisDocument = false
+
 export function IntroLoader() {
-  const [phase, setPhase] = useState<Phase>("words")
+  // Captured at first render: is this the entry page of this document, or a
+  // later client-side navigation within it?
+  const [isEntryPage] = useState(() => !mountedThisDocument)
+  const [phase, setPhase] = useState<Phase>(isEntryPage ? "words" : "hidden")
   const [states, setStates] = useState<WordState[]>(() => WORDS.map(() => "idle"))
 
   useEffect(() => {
+    mountedThisDocument = true
+    if (!isEntryPage) return
+
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     let seen = false
     try {
@@ -108,7 +128,7 @@ export function IntroLoader() {
       timers.forEach(clearTimeout)
       document.body.style.overflow = ""
     }
-  }, [])
+  }, [isEntryPage])
 
   const skip = () => {
     if (phase === "hidden" || phase === "curtain") return

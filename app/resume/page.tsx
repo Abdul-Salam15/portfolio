@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, Download, ExternalLink, Github, Linkedin, Mail } from "lucide-react"
 import { Navigation } from "@/components/navigation"
+import { IntroLoader } from "@/components/intro-loader"
 import { ContactModal } from "@/components/contact-modal"
 import { TechStack } from "@/components/tech-stack"
 import { CareerTimeline } from "@/components/career-timeline"
@@ -25,6 +26,7 @@ export default function ResumePage() {
 
   return (
     <div className="home-redesign font-body">
+      <IntroLoader />
       <Navigation />
 
       <main className="pt-20">

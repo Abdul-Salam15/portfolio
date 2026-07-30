@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, FileText, Github, Linkedin, Mail, GraduationCap, Award } from "lucide-react"
 import { Navigation } from "@/components/navigation"
+import { IntroLoader } from "@/components/intro-loader"
 import { ContactModal } from "@/components/contact-modal"
 import { ImageCarousel } from "@/components/image-carousel"
 import { HighlightRow, type HighlightItem } from "@/components/highlight-row"
@@ -100,6 +101,7 @@ export default function AboutPage() {
 
   return (
     <div className="home-redesign font-body">
+      <IntroLoader />
       <Navigation />
 
       <main className="pt-20">

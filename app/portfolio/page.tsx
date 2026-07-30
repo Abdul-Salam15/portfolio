@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, FileText, Github, Linkedin, Mail } from "lucide-react"
 import { Navigation } from "@/components/navigation"
+import { IntroLoader } from "@/components/intro-loader"
 import { ContactModal } from "@/components/contact-modal"
 import { work, workCategories, WorkCard, type WorkCategory } from "@/components/work-card"
 import { FadeIn, SlideInLeft, StaggerIn } from "@/components/animations/reveal-animations"
@@ -31,6 +32,7 @@ export default function PortfolioPage() {
 
   return (
     <div className="home-redesign font-body">
+      <IntroLoader />
       <Navigation />
 
       <main className="pt-20">
