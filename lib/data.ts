@@ -5,6 +5,8 @@
  * page and the resume because each page held its own copy.
  */
 
+import { strict } from "assert/strict"
+
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.abdulmalikadebayo.com"
 
 export const profile = {
@@ -111,9 +113,9 @@ export const experience: Experience[] = [
         summary:
           "Shipped an Arabic–English legal chatbot on AWS Bedrock (Llama 3, 200+ queries/day) for a Saudi client, and delivered custom AI for clients across Europe, Asia and Africa.",
         bullets: [
-          "Led an end-to-end Arabic-English legal chatbot using Llama 3 and Legal GPT via AWS Bedrock, handling 200+ queries a day for a Saudi client with strict data-sovereignty needs.",
-          "Delivered custom AI implementations for clients across Europe (Ireland, UK), Asia (China, Malaysia) and Africa (Nigeria).",
-          "Aligned deployments with client and stakeholder goals around compliance, governance and real-time decision intelligence.",
+          "Built the backend and AI for D Jungle People's live iOS/Android leadership coaching app, running a T-GROW coaching protocol via LLM with pgvector RAG retrieval over the firm's coaching corpus; drove £100k+ in new revenue within four months of launch and a 20% lift in post-workshop retention.",
+          "Built an AI voice companion with tool-calling architecture for a dementia-care app, integrating emotional prosody detection with a multi-step reasoning flow that triggers photo-based memory quizzes and escalates distress signals to human carers, bound to a clinical safeguarding spec.",
+          "Led end to end development of an Arabic English legal chatbot using Llama 3 and Legal GPT via AWS Bedrock, with retrieval built on a LlamaIndex RAG pipeline over client uploaded documents, handling 200+ queries daily for a Saudi based client with strict data sovereignty requirements",
         ],
       },
       {
@@ -122,9 +124,9 @@ export const experience: Experience[] = [
         summary:
           "Built Apprentago's entire backend and API layer (22,000+ users, 10,000+ job listings) with RAG-powered AI assistants shipped on AWS & GCP.",
         bullets: [
-          "Built the complete backend and API layer for Apprentago, an apprenticeship platform with 22,000+ users and 10,000+ job listings, through to live deployment.",
-          "Developed LLM assistants using RAG pipelines and fine-tuned models, containerised with Docker for scalable deployment.",
-          "Deployed on AWS and GCP with CI/CD via GitHub Actions, maintaining security and NDA compliance across confidential client projects.",
+          "Designed and built the complete backend architecture and API endpoints for Apprentago, a large-scale apprenticeship platform serving 22,000+ users and 10,000+ job listings, ensuring scalability, efficiency, and successful live deployment.",
+          "Built a Python-based job title standardization pipeline, processing over one million free-text job titles by correcting spelling errors and removing embedded locations, employment types, and seniority indicators, while preserving original source values for traceability",
+          "Developed LLM-powered AI assistants using RAG pipelines and fine-tuned models, deploying with Docker on AWS and GCP with CI/CD via GitHub Actions, maintaining security and NDA compliance across confidential client projects",
         ],
       },
     ],
