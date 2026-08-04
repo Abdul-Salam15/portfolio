@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Rocket } from "lucide-react"
 import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap"
 import { TiltCard } from "@/components/tilt-card"
+import { LogoImage } from "@/components/logo-image"
 
 export type Role = { title: string; period: string; bullets: string[] }
 export type Job = {
@@ -35,9 +36,12 @@ function CompanyIdentity({
   if (hasLogo && logoType === "wordmark") {
     return (
       <span className={`flex h-11 items-center rounded-xl bg-white px-3 ring-1 ${ring}`}>
-        <img
-          src={logo}
+        <LogoImage
+          src={logo!}
           alt={company}
+          width={160}
+          height={44}
+          sizes="160px"
           className="h-6 w-auto max-w-[160px] object-contain md:h-7"
           onError={() => setError(true)}
         />
@@ -49,7 +53,15 @@ function CompanyIdentity({
     <div className="flex items-center gap-3">
       {hasLogo ? (
         <span className={`flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 ring-1 ${ring}`}>
-          <img src={logo} alt={company} className="h-full w-full object-contain" onError={() => setError(true)} />
+          <LogoImage
+            src={logo!}
+            alt={company}
+            width={44}
+            height={44}
+            sizes="44px"
+            className="h-full w-full object-contain"
+            onError={() => setError(true)}
+          />
         </span>
       ) : (
         <span

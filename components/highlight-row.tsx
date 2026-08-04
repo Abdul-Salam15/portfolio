@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { ArrowUpRight, type LucideIcon } from "lucide-react"
+import { LogoImage } from "@/components/logo-image"
 
 export interface HighlightItem {
   href: string
@@ -15,9 +16,12 @@ function HighlightLogo({ logo, icon: Icon, alt }: { logo?: string; icon?: Lucide
   const [error, setError] = useState(false)
   if (logo && !error) {
     return (
-      <img
+      <LogoImage
         src={logo}
         alt={alt}
+        width={160}
+        height={48}
+        sizes="160px"
         className="max-h-12 w-auto max-w-[160px] object-contain object-left"
         onError={() => setError(true)}
       />

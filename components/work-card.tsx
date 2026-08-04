@@ -13,6 +13,7 @@ import {
   type LucideIcon,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { LogoImage } from "@/components/logo-image"
 
 export type WorkCategory = "AI & Backend" | "Full-stack"
 
@@ -67,13 +68,14 @@ export const work: WorkItem[] = [
   {
     clientLogo: "/apprentago-logo.png",
     title: "Apprentago",
-    desc: "AI-powered apprenticeship platform. I built the complete backend and API layer for 22,000+ users and 10,000+ job listings.",
+    desc: "AI-powered apprenticeship platform. I built the complete backend and API layer for 22,000+ users and 10,000+ job listings, powering multiple dashboards for students and employers on one central backend.",
     role: "Backend & AI",
     period: "2024 – 2025",
     category: "AI & Backend",
     stack: ["Django", "PostgreSQL", "OpenAI", "Google Cloud Console", "Docker", "GitHub Actions"],
     employer: "BRDGE",
     employerLogo: BRDGE_LOGO,
+    caseStudyUrl: "https://apprentago.co.uk/",
   },
   {
     clientLogo: "/mlg-logo.png",
@@ -171,9 +173,12 @@ export function WorkCard({ item, showStack = false }: { item: WorkItem; showStac
       {/* client / product */}
       <div className="mb-5 flex h-12 items-center gap-3">
         {item.clientLogo ? (
-          <img
+          <LogoImage
             src={item.clientLogo}
             alt={item.title}
+            width={160}
+            height={48}
+            sizes="160px"
             className={cn("w-auto max-w-[160px] object-contain object-left", item.clientLogoClass ?? "max-h-10")}
           />
         ) : (
@@ -207,7 +212,14 @@ export function WorkCard({ item, showStack = false }: { item: WorkItem; showStac
         <span className="text-xs text-slate-500">
           Built at <span className="font-semibold text-slate-900">{item.employer}</span>
         </span>
-        <img src={item.employerLogo} alt={item.employer} className="h-5 w-auto max-w-[72px] object-contain" />
+        <LogoImage
+          src={item.employerLogo}
+          alt={item.employer}
+          width={72}
+          height={24}
+          sizes="72px"
+          className="h-5 w-auto max-w-[72px] object-contain"
+        />
         {item.period && <span className="ml-auto text-xs text-slate-500">{item.period}</span>}
       </div>
     </>

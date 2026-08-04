@@ -190,40 +190,46 @@ export type CarouselImage = {
   fit?: "cover" | "contain"
 }
 
+/**
+ * Every Cloudinary src MUST carry the `f_auto,q_auto:good,c_limit,w_1280` transform.
+ * Without it Cloudinary serves the untouched original (the Bowen shots are ~5MB each),
+ * and next/image's remote fetch gives up after ~7s, so the optimizer returns a 500 and
+ * the slide renders as an empty box. With the transform they drop to ~400KB.
+ */
 export const speakingImages: CarouselImage[] = [
   {
-    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1920/v1782981329/_80A8658_Original_x4gywk.jpg",
+    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1782981329/_80A8658_Original_x4gywk.jpg",
     alt: "Adebayo speaking at Google DevFest, Ibadan",
     caption: "Google DevFest, Ibadan",
     fit: "contain",
   },
   {
-    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1920/v1782980810/IMG_2766_x8id0d.jpg",
+    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1782980810/IMG_2766_x8id0d.jpg",
     alt: "Adebayo speaking at Google DevFest, Ibadan",
     caption: "Google DevFest, Ibadan",
   },
   {
-    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1920/nyp1_eazyrn",
+    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1280/nyp1_eazyrn",
     alt: "Adebayo speaking at the Nigeria Youth Parliament",
     caption: "Nigeria Youth Parliament",
   },
   {
-    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1920/v1782980354/nyp2_tnqmfs.jpg",
+    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1782980354/nyp2_tnqmfs.jpg",
     alt: "Adebayo speaking at the Nigeria Youth Parliament",
     caption: "Nigeria Youth Parliament",
   },
   {
-    src: "https://res.cloudinary.com/dlgzlrzfh/image/upload/v1756196080/IMG_0711_cbcnks.jpg",
+    src: "https://res.cloudinary.com/dlgzlrzfh/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1756196080/IMG_0711_cbcnks.jpg",
     alt: "Adebayo speaking at Bowen Tech Week",
     caption: "Bowen Tech Week",
   },
   {
-    src: "https://res.cloudinary.com/dlgzlrzfh/image/upload/v1756196078/IMG_0713_zfi7bj.jpg",
+    src: "https://res.cloudinary.com/dlgzlrzfh/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1756196078/IMG_0713_zfi7bj.jpg",
     alt: "Adebayo speaking at Bowen Tech Week",
     caption: "Bowen Tech Week",
   },
   {
-    src: "https://res.cloudinary.com/dlgzlrzfh/image/upload/v1756196078/IMG_0712_hdy03t.jpg",
+    src: "https://res.cloudinary.com/dlgzlrzfh/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1756196078/IMG_0712_hdy03t.jpg",
     alt: "Adebayo speaking at Bowen Tech Week",
     caption: "Bowen Tech Week",
   },

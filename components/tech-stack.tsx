@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { StaggerIn } from "@/components/animations/reveal-animations"
+import { LogoImage } from "@/components/logo-image"
 
 export interface Tech {
   name: string
@@ -66,10 +67,12 @@ function TechTile({ tech }: { tech: Tech }) {
             {tech.name.slice(0, 2)}
           </span>
         ) : (
-          <img
+          <LogoImage
             src={tech.logo}
             alt={tech.name}
-            loading="lazy"
+            width={44}
+            height={44}
+            sizes="44px"
             className="h-full w-full object-contain"
             onError={() => setError(true)}
           />

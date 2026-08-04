@@ -22,6 +22,7 @@ import {
 } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { IntroLoader } from "@/components/intro-loader"
+import { LogoImage } from "@/components/logo-image"
 import { ContactModal } from "@/components/contact-modal"
 import { ImageCarousel } from "@/components/image-carousel"
 import { HighlightRow } from "@/components/highlight-row"
@@ -153,11 +154,27 @@ function CompanyIdentity({
     </span>
   ) : wordmark ? (
     <span className="inline-flex items-center">
-      <img src={logo} alt={`${company} logo`} className="h-7 w-auto" onError={() => setError(true)} />
+      <LogoImage
+        src={logo!}
+        alt={`${company} logo`}
+        width={160}
+        height={44}
+        sizes="160px"
+        className="h-7 w-auto"
+        onError={() => setError(true)}
+      />
     </span>
   ) : (
     <span className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-xl">
-      <img src={logo} alt={`${company} logo`} className="h-full w-full object-contain" onError={() => setError(true)} />
+      <LogoImage
+        src={logo!}
+        alt={`${company} logo`}
+        width={44}
+        height={44}
+        sizes="44px"
+        className="h-full w-full object-contain"
+        onError={() => setError(true)}
+      />
     </span>
   )
 
@@ -245,8 +262,12 @@ export default function HomePage() {
             <SlideInRight className="relative mx-auto w-full max-w-md">
               <div className="absolute inset-0 bg-primary/20 blur-[90px]" />
               <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+                {/* The Cloudinary c_crop tightens the full-length studio shot to a head-and-shoulders
+                    portrait: it cuts below the chest (hands and watch sat at y~1560 of 2738) and its
+                    1469x1574 output matches the 448x480 frame, so object-cover has nothing left to
+                    trim. g_face/z_* are silently ignored on this account, hence the explicit crop. */}
                 <Image
-                  src="https://res.cloudinary.com/dlgzlrzfh/image/upload/v1756197152/OBD_1829_puui1n.jpg"
+                  src="https://res.cloudinary.com/dlgzlrzfh/image/upload/c_crop,x_177,y_452,w_1469,h_1574/v1756197152/OBD_1829_puui1n.jpg"
                   alt="Adebayo Abdul-Malik"
                   width={448}
                   height={480}
@@ -254,10 +275,6 @@ export default function HomePage() {
                   sizes="(min-width: 1024px) 448px, 100vw"
                   className="h-[30rem] w-full object-cover"
                 />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <p className="font-display text-lg font-bold">AI &amp; Backend Engineer</p>
-                  <p className="text-sm text-slate-300">Lagos, Nigeria · Available for remote work</p>
-                </div>
               </div>
             </SlideInRight>
           </div>
@@ -361,95 +378,9 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 3. WHY I BUILD (dark) */}
-        <section className="relative overflow-hidden bg-[#081a3d] py-24 px-6 text-white">
-          <div className="absolute -right-20 top-0 h-96 w-96 rounded-full bg-primary/10 blur-[130px]" />
-          <div className="relative mx-auto max-w-5xl">
-            <FadeIn>
-              <p className="mb-4 text-sm font-bold uppercase tracking-widest text-accent-teal">Why I build</p>
-              <h2 className="font-display text-4xl font-bold md:text-5xl">
-                Research rigour. <span className="text-primary">Production reality.</span>
-              </h2>
-              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-400">
-                I started in AI research, building a Nigerian Sign Language recognition system and NLP models where
-                correctness and evaluation are everything. Then I moved into shipping backends and LLM systems for real
-                users, where scale, latency and reliability decide whether the work actually matters.
-              </p>
-            </FadeIn>
-
-            <StaggerIn staggerDelay={0.15} className="mt-12 grid gap-6 md:grid-cols-2">
-              <div className="rounded-3xl border border-white/10 bg-slate-900/60 p-8">
-                <p className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-accent-teal">
-                  <span className="h-2 w-2 rounded-full bg-accent-teal" /> Research
-                </p>
-                <h3 className="mb-2 text-xl font-bold">How to do things right.</h3>
-                <p className="text-sm leading-relaxed text-slate-400">
-                  Evaluation, correctness and reproducibility: the discipline to build models and systems that hold up
-                  when real people depend on them.
-                </p>
-              </div>
-              <div className="rounded-3xl border border-white/10 bg-slate-900/60 p-8">
-                <p className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary">
-                  <span className="h-2 w-2 rounded-full bg-primary" /> Production
-                </p>
-                <h3 className="mb-2 text-xl font-bold">What actually ships.</h3>
-                <p className="text-sm leading-relaxed text-slate-400">
-                  APIs, scale, latency and cost under load: turning a working prototype into a service that stays up and
-                  performs for thousands of users.
-                </p>
-              </div>
-            </StaggerIn>
-
-            <FadeIn>
-              <p className="mt-12 border-t border-white/10 pt-10 text-2xl font-medium leading-snug md:text-3xl">
-                The best AI work sits where research rigour meets production reality:{" "}
-                <span className="text-primary">that's where I build.</span>
-              </p>
-            </FadeIn>
-          </div>
-        </section>
-
-        {/* 4. WHAT I DO (light) */}
+        {/* 3. SELECTED WORK (light) — directly after Experience so the proof
+            sits with the roles, before any positioning copy. */}
         <section className="bg-white py-24 px-6">
-          <div className="mx-auto max-w-7xl">
-            <FadeIn>
-              <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">What I do</p>
-              <h2 className="mb-14 max-w-2xl font-display text-4xl font-bold text-slate-900 md:text-5xl">
-                Four ways I help teams ship AI.
-              </h2>
-            </FadeIn>
-            <StaggerIn staggerDelay={0.12} className="grid gap-6 md:grid-cols-2">
-              {services.map((s) => (
-                <div
-                  key={s.no}
-                  className="group rounded-3xl border border-slate-200 bg-white p-8 transition-all hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <div className="mb-6 flex items-center justify-between">
-                    <span className="font-display text-sm font-bold text-primary">{s.no}</span>
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 transition-transform group-hover:scale-110">
-                      <s.icon className="h-5 w-5 text-primary" />
-                    </div>
-                  </div>
-                  <h3 className="mb-2 text-xl font-bold text-slate-900">{s.title}</h3>
-                  <p className="mb-5 leading-relaxed text-slate-600">{s.desc}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {s.tags.map((t) => (
-                      <span
-                        key={t}
-                        className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-500"
-                      >
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </StaggerIn>
-          </div>
-        </section>
-
-        {/* 5. SELECTED WORK (light) */}
-        <section className="bg-slate-50 py-24 px-6">
           <div className="mx-auto max-w-7xl">
             <FadeIn>
               <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">Selected Work</p>
@@ -477,7 +408,50 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 6. SPEAKING & COMMUNITY (light) */}
+        {/* 4. WHAT I DO (dark) — carries the mid-page dark break that the old
+            "Why I build" section used to provide. That section was removed: it
+            restated the hero H1 ("Where AI meets real-world impact") and
+            duplicated About's "My story" almost line for line. */}
+        <section className="relative overflow-hidden bg-[#081a3d] py-24 px-6 text-white">
+          <div className="absolute -right-20 top-0 h-96 w-96 rounded-full bg-primary/10 blur-[130px]" />
+          <div className="relative mx-auto max-w-7xl">
+            <FadeIn>
+              <p className="mb-4 text-sm font-bold uppercase tracking-widest text-accent-teal">What I do</p>
+              <h2 className="mb-14 max-w-2xl font-display text-4xl font-bold md:text-5xl">
+                Four ways I help teams ship AI.
+              </h2>
+            </FadeIn>
+            <StaggerIn staggerDelay={0.12} className="grid gap-6 md:grid-cols-2">
+              {services.map((s) => (
+                <div
+                  key={s.no}
+                  className="group rounded-3xl border border-white/10 bg-slate-900/60 p-8 transition-all hover:-translate-y-1 hover:border-white/25"
+                >
+                  <div className="mb-6 flex items-center justify-between">
+                    <span className="font-display text-sm font-bold text-accent-teal">{s.no}</span>
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/20 transition-transform group-hover:scale-110">
+                      <s.icon className="h-5 w-5 text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="mb-2 text-xl font-bold">{s.title}</h3>
+                  <p className="mb-5 leading-relaxed text-slate-400">{s.desc}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {s.tags.map((t) => (
+                      <span
+                        key={t}
+                        className="rounded-full border border-white/15 px-3 py-1 text-xs font-medium text-slate-400"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </StaggerIn>
+          </div>
+        </section>
+
+        {/* 5. SPEAKING & COMMUNITY (light) */}
         <section className="bg-white py-24 px-6">
           <div className="mx-auto max-w-6xl">
             <FadeIn>
@@ -510,7 +484,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 7. CONTACT CTA (dark) */}
+        {/* 6. CONTACT CTA (dark) */}
         <section className="relative overflow-hidden bg-[#081a3d] py-28 px-6 text-center text-white">
           <div className="absolute left-1/2 top-0 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/20 blur-[140px]" />
           <div className="relative mx-auto max-w-3xl">
@@ -543,7 +517,7 @@ export default function HomePage() {
         </section>
       </main>
 
-      {/* 8. FOOTER (dark) */}
+      {/* 7. FOOTER (dark) */}
       <footer className="bg-[#081a3d] px-6 py-16 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[2fr_1fr_1fr]">
           <div>
