@@ -72,7 +72,7 @@ export default function PortfolioPage() {
                 {stats.map((s) => (
                   <div key={s.label}>
                     <dt className="font-display text-3xl font-extrabold text-white md:text-4xl">{s.value}</dt>
-                    <dd className="mt-1 text-xs uppercase tracking-widest text-slate-500">{s.label}</dd>
+                    <dd className="mt-1 text-xs uppercase tracking-widest text-slate-400">{s.label}</dd>
                   </div>
                 ))}
               </dl>
@@ -86,7 +86,7 @@ export default function PortfolioPage() {
             <FadeIn>
               <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">Selected Work</p>
               <h2 className="mb-8 font-display text-4xl font-bold text-slate-900 md:text-5xl">
-                Where I put the work in.
+                Everything I've shipped.
               </h2>
             </FadeIn>
 
@@ -196,7 +196,7 @@ export default function PortfolioPage() {
             </p>
           </div>
           <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-500">Explore</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Explore</p>
             <ul className="space-y-2 text-sm text-slate-400">
               <li><Link href="/" className="hover:text-primary">Home</Link></li>
               <li><Link href="/about" className="hover:text-primary">About</Link></li>
@@ -205,7 +205,7 @@ export default function PortfolioPage() {
             </ul>
           </div>
           <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-500">Connect</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Connect</p>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
                 <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 hover:text-primary">
@@ -225,7 +225,7 @@ export default function PortfolioPage() {
             </ul>
           </div>
         </div>
-        <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-500 md:flex-row">
+        <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-400 md:flex-row">
           <span>© {new Date().getFullYear()} Adebayo Abdul-Malik.</span>
           <span>Lagos, Nigeria</span>
         </div>

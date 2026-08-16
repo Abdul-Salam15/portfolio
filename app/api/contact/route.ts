@@ -129,7 +129,7 @@ export async function POST(request: Request) {
       to: email,
       subject: `Thanks for reaching out, ${name.split(" ")[0]}`,
       html: shell(
-        `Thanks, ${escapeHtml(name.split(" ")[0])} — I got your message`,
+        `Thanks, ${escapeHtml(name.split(" ")[0])}. I got your message`,
         `<p style="margin:0 0 16px;color:#334155;line-height:1.6;">Thanks for getting in touch. I typically respond within 24 hours. Here's a copy of what you sent:</p>
          <p style="margin:0 0 8px;color:#334155;"><strong>Subject:</strong> ${escapeHtml(subject)}</p>
          ${messageBlock(message)}

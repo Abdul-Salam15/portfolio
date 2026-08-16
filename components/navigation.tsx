@@ -36,7 +36,7 @@ export function Navigation() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center space-x-2" aria-label={`${profile.name} — home`}>
+            <Link href="/" className="flex items-center space-x-2" aria-label={`${profile.name}, home`}>
               <Image src="/logo.png" alt={`${profile.name} logo`} width={60} height={20} priority />
             </Link>
 
@@ -84,7 +84,7 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="sm"
-              className="md:hidden"
+              className="h-11 w-11 md:hidden"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
             >

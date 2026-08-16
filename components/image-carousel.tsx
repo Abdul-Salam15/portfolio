@@ -94,22 +94,27 @@ export function ImageCarousel({ images, interval = 4000, className = "" }: Image
             <button
               onClick={() => setIsAutoPlaying((v) => !v)}
               aria-label={isAutoPlaying ? "Pause slideshow" : "Play slideshow"}
-              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-black/20 text-white backdrop-blur-sm transition-colors hover:bg-black/40"
+              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-black/20 text-white backdrop-blur-sm transition-colors hover:bg-black/40"
             >
               {isAutoPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
             </button>
           )}
 
-          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+          <div className="absolute bottom-2 left-1/2 flex -translate-x-1/2 gap-1">
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 aria-label={`Go to slide ${index + 1}`}
-                className={`h-2.5 w-2.5 rounded-full transition-all ${
-                  index === currentIndex ? "scale-110 bg-white" : "bg-white/50 hover:bg-white/70"
-                }`}
-              />
+                aria-current={index === currentIndex}
+                className="flex h-6 w-6 items-center justify-center"
+              >
+                <span
+                  className={`h-2.5 w-2.5 rounded-full transition-all ${
+                    index === currentIndex ? "scale-110 bg-white" : "bg-white/50 hover:bg-white/70"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         </>

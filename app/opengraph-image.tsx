@@ -3,7 +3,7 @@ import { profile } from "@/lib/data"
 
 // Branded social-share card, generated at build/request time. Picked up
 // automatically by Next for OpenGraph and Twitter tags across the site.
-export const alt = `${profile.name} — ${profile.title}`
+export const alt = `${profile.name} · ${profile.title}`
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 

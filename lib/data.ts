@@ -5,8 +5,6 @@
  * page and the resume because each page held its own copy.
  */
 
-import { strict } from "assert/strict"
-
 export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.abdulmalikadebayo.com"
 
 export const profile = {

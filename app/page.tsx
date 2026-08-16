@@ -51,8 +51,8 @@ const capabilities = [
 ]
 
 const heroStats = [
+  { value: `${work.length}`, label: "Products shipped" },
   { value: "23K+", label: "Users reached" },
-  { value: "7", label: "Countries" },
   { value: "4", label: "Continents" },
 ]
 
@@ -253,7 +253,7 @@ export default function HomePage() {
                 {heroStats.map((s) => (
                   <div key={s.label}>
                     <div className="font-display text-3xl font-bold text-white">{s.value}</div>
-                    <div className="text-xs uppercase tracking-wider text-slate-500">{s.label}</div>
+                    <div className="text-xs uppercase tracking-wider text-slate-400">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -279,7 +279,7 @@ export default function HomePage() {
             </SlideInRight>
           </div>
 
-          <div className="pointer-events-none absolute inset-x-0 bottom-6 flex flex-col items-center gap-1 text-slate-500">
+          <div className="pointer-events-none absolute inset-x-0 bottom-6 flex flex-col items-center gap-1 text-slate-400">
             <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
             <ChevronDown className="h-4 w-4 animate-bounce" />
           </div>
@@ -527,7 +527,7 @@ export default function HomePage() {
             </p>
           </div>
           <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-500">Explore</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Explore</p>
             <ul className="space-y-2 text-sm text-slate-400">
               <li><Link href="/" className="hover:text-primary">Home</Link></li>
               <li><Link href="/about" className="hover:text-primary">About</Link></li>
@@ -536,7 +536,7 @@ export default function HomePage() {
             </ul>
           </div>
           <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-500">Connect</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Connect</p>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
                 <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 hover:text-primary">
@@ -556,7 +556,7 @@ export default function HomePage() {
             </ul>
           </div>
         </div>
-        <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-500 md:flex-row">
+        <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-400 md:flex-row">
           <span>© {new Date().getFullYear()} Adebayo Abdul-Malik.</span>
           <span>Lagos, Nigeria</span>
         </div>

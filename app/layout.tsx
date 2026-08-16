@@ -21,16 +21,16 @@ const inter = Inter({
 })
 
 const description =
-  "Adebayo Abdul-Malik — AI & Backend Engineer. Production LLM systems, RAG pipelines and scalable backends serving 23K+ users across four continents."
+  "Adebayo Abdul-Malik · AI & Backend Engineer. Production LLM systems, RAG pipelines and scalable backends serving 23K+ users across four continents."
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${profile.name} — ${profile.title}`,
-    template: `%s — ${profile.name}`,
+    default: `${profile.name} · ${profile.title}`,
+    template: `%s · ${profile.name}`,
   },
   description,
-  applicationName: `${profile.name} — Portfolio`,
+  applicationName: `${profile.name} · Portfolio`,
   authors: [{ name: profile.name, url: siteUrl }],
   creator: profile.name,
   keywords: [
@@ -51,14 +51,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    siteName: `${profile.name} — Portfolio`,
-    title: `${profile.name} — ${profile.title}`,
+    siteName: `${profile.name} · Portfolio`,
+    title: `${profile.name} · ${profile.title}`,
     description,
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} — ${profile.title}`,
+    title: `${profile.name} · ${profile.title}`,
     description,
   },
   robots: {

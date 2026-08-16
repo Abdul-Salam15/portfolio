@@ -152,7 +152,7 @@ export default function ResumePage() {
             </p>
           </div>
           <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-500">Explore</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Explore</p>
             <ul className="space-y-2 text-sm text-slate-400">
               <li><Link href="/" className="hover:text-primary">Home</Link></li>
               <li><Link href="/about" className="hover:text-primary">About</Link></li>
@@ -161,7 +161,7 @@ export default function ResumePage() {
             </ul>
           </div>
           <div>
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-500">Connect</p>
+            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Connect</p>
             <ul className="space-y-2 text-sm text-slate-400">
               <li>
                 <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 hover:text-primary">
@@ -181,7 +181,7 @@ export default function ResumePage() {
             </ul>
           </div>
         </div>
-        <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-500 md:flex-row">
+        <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-400 md:flex-row">
           <span>© {new Date().getFullYear()} Adebayo Abdul-Malik.</span>
           <span>Lagos, Nigeria</span>
         </div>

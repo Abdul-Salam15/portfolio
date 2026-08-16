@@ -28,6 +28,11 @@ export function FadeIn({ children, delay = 0, duration = 0.8, className = "" }: 
     const element = elementRef.current
     if (!element) return
 
+    if (reduced()) {
+      gsap.set(element, { opacity: 1, y: 0 })
+      return
+    }
+
     gsap.fromTo(
       element,
       {
@@ -63,6 +68,11 @@ export function SlideInLeft({ children, delay = 0, duration = 0.8, className = "
   useEffect(() => {
     const element = elementRef.current
     if (!element) return
+
+    if (reduced()) {
+      gsap.set(element, { opacity: 1, x: 0 })
+      return
+    }
 
     gsap.fromTo(
       element,
@@ -100,6 +110,11 @@ export function SlideInRight({ children, delay = 0, duration = 0.8, className = 
     const element = elementRef.current
     if (!element) return
 
+    if (reduced()) {
+      gsap.set(element, { opacity: 1, x: 0 })
+      return
+    }
+
     gsap.fromTo(
       element,
       {
@@ -135,6 +150,11 @@ export function ScaleIn({ children, delay = 0, duration = 0.8, className = "" }:
   useEffect(() => {
     const element = elementRef.current
     if (!element) return
+
+    if (reduced()) {
+      gsap.set(element, { opacity: 1, scale: 1 })
+      return
+    }
 
     gsap.fromTo(
       element,
@@ -179,6 +199,11 @@ export function StaggerIn({
 
     const childElements = container.children
 
+    if (reduced()) {
+      gsap.set(childElements, { opacity: 1, y: 0 })
+      return
+    }
+
     gsap.fromTo(
       childElements,
       {
@@ -215,6 +240,11 @@ export function HeroTextAnimation({ children, className = "" }: { children: Reac
   useEffect(() => {
     const element = elementRef.current
     if (!element) return
+
+    if (reduced()) {
+      gsap.set(element.children, { opacity: 1, y: 0 })
+      return
+    }
 
     const tl = gsap.timeline()
 
@@ -280,6 +310,8 @@ export function FloatingAnimation({ children, className = "" }: { children: Reac
   useEffect(() => {
     const element = elementRef.current
     if (!element) return
+
+    if (reduced()) return
 
     gsap.to(element, {
       y: -10,
