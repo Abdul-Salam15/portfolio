@@ -50,7 +50,7 @@ export const experience: Experience[] = [
     period: "Jan 2026 – Present",
     roles: [
       {
-        title: "AI Engineer (LLM & Applied ML)",
+        title: "Senior AI Engineer (LLM & Applied ML)",
         period: "Jan 2026 – Present",
         summary:
           "Building LLM safety pipelines on Anthropic's Claude API and modernising desktop infrastructure for AI feature deployment.",
