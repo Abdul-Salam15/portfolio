@@ -3,8 +3,8 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Mail, Send, CheckCircle, AlertCircle, User, MessageSquare, MapPin, Globe } from "lucide-react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
+import { Mail, Send, CheckCircle, AlertCircle } from "lucide-react"
 import { profile } from "@/lib/data"
 
 interface ContactModalProps {
@@ -13,6 +13,26 @@ interface ContactModalProps {
 }
 
 const EMAIL = profile.email
+
+const quickTemplates = [
+  {
+    label: "Collaboration",
+    subject: "Collaboration Opportunity",
+    message:
+      "Hi Adebayo,\n\nI'm interested in discussing a potential collaboration. I'd love to learn more about your work and explore how we might work together.\n\nBest regards,",
+  },
+  {
+    label: "Job Opportunity",
+    subject: "Job Opportunity",
+    message:
+      "Hi Adebayo,\n\nI came across your portfolio and I'm impressed by your work in AI and backend engineering. We have an opportunity that might interest you.\n\nBest regards,",
+  },
+  {
+    label: "General Inquiry",
+    subject: "General Inquiry",
+    message: "Hi Adebayo,\n\nI have a question about your work and would love to connect.\n\nBest regards,",
+  },
+]
 
 export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [formData, setFormData] = useState({
@@ -29,6 +49,15 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  // Fill from a template, but never clobber a message the user actually typed:
+  // only replace the body when it's empty or still holds another template's text.
+  const handleTemplateSelect = (template: (typeof quickTemplates)[0]) => {
+    setFormData((prev) => {
+      const untouched = prev.message === "" || quickTemplates.some((t) => t.message === prev.message)
+      return { ...prev, subject: template.subject, message: untouched ? template.message : prev.message }
+    })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -65,192 +94,150 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     }
   }
 
-  const quickTemplates = [
-    {
-      label: "Collaboration",
-      subject: "Collaboration Opportunity",
-      message:
-        "Hi Adebayo,\n\nI'm interested in discussing a potential collaboration opportunity. I'd love to learn more about your work and explore how we might work together.\n\nBest regards,",
-    },
-    {
-      label: "Job Opportunity",
-      subject: "Job Opportunity",
-      message:
-        "Hi Adebayo,\n\nI came across your portfolio and I'm impressed by your work in AI research and backend development. We have an exciting opportunity that might interest you.\n\nBest regards,",
-    },
-    {
-      label: "General Inquiry",
-      subject: "General Inquiry",
-      message: "Hi Adebayo,\n\nI have a question about your work and would love to connect.\n\nBest regards,",
-    },
-  ]
-
-  const handleTemplateSelect = (template: (typeof quickTemplates)[0]) => {
-    setFormData((prev) => ({
-      ...prev,
-      subject: template.subject,
-      message: template.message,
-    }))
-  }
-
-  const contactRows = [
-    { icon: Mail, value: EMAIL },
-    { icon: MapPin, value: profile.location },
-    { icon: Globe, value: "Available for remote work" },
-  ]
+  const isSuccess = submitStatus === "success"
 
   const inputClass =
     "w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+  const labelClass = "text-sm font-semibold text-slate-700"
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="home-redesign font-body max-h-[90vh] max-w-lg overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 sm:p-8">
-        <DialogHeader>
+      <DialogContent className="home-redesign font-body max-h-[90vh] max-w-lg overflow-y-auto rounded-3xl border border-slate-200 bg-white p-6 text-slate-900 sm:p-7">
+        <DialogHeader className="space-y-1.5">
           <DialogTitle className="flex items-center gap-2.5 font-display text-2xl font-bold text-slate-900">
             <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10">
               <Mail className="h-5 w-5 text-primary" />
             </span>
-            Get in touch
+            {isSuccess ? "Message sent" : "Get in touch"}
           </DialogTitle>
+          <DialogDescription className="text-sm text-slate-500">
+            {isSuccess
+              ? "Thanks. Check your inbox for a confirmation, I'll be in touch soon."
+              : "Tell me about your project, role or question. I usually reply within 24 hours."}
+          </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-6">
-          {/* Contact information */}
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">Contact information</h3>
-            <ul className="mt-3 space-y-2.5">
-              {contactRows.map((row) => (
-                <li key={row.value} className="flex items-center gap-3 text-sm text-slate-600">
-                  <row.icon className="h-4 w-4 shrink-0 text-primary" />
-                  <span>{row.value}</span>
-                </li>
-              ))}
-            </ul>
+        {isSuccess ? (
+          <div className="flex flex-col items-center gap-3 py-10 text-center">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+              <CheckCircle className="h-8 w-8 text-primary" />
+            </span>
+            <p className="text-sm text-slate-600">Your message is on its way.</p>
           </div>
-
-          {/* Quick templates */}
-          <div>
-            <h3 className="mb-3 text-xs font-bold uppercase tracking-widest text-slate-400">Quick templates</h3>
-            <div className="flex flex-wrap gap-2">
-              {quickTemplates.map((template) => {
-                const active = formData.subject === template.subject
-                return (
-                  <button
-                    key={template.label}
-                    type="button"
-                    onClick={() => handleTemplateSelect(template)}
-                    className={
-                      active
-                        ? "rounded-full bg-primary px-4 py-1.5 text-sm font-semibold text-primary-foreground transition-colors"
-                        : "rounded-full border border-slate-200 bg-white px-4 py-1.5 text-sm font-semibold text-slate-600 transition-colors hover:border-primary hover:text-primary"
-                    }
-                  >
-                    {template.label}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Honeypot: hidden from users, catches bots. */}
-            <input
-              type="text"
-              name="company"
-              value={formData.company}
-              onChange={handleInputChange}
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-              className="hidden"
-            />
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="space-y-1.5">
-                <label htmlFor="name" className="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
-                  <User className="h-3.5 w-3.5 text-primary" /> Name <span className="text-primary">*</span>
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Your full name"
-                  required
-                  disabled={isSubmitting}
-                  className={inputClass}
-                />
-              </div>
-              <div className="space-y-1.5">
-                <label htmlFor="email" className="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
-                  <Mail className="h-3.5 w-3.5 text-primary" /> Email <span className="text-primary">*</span>
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="your.email@example.com"
-                  required
-                  disabled={isSubmitting}
-                  className={inputClass}
-                />
-              </div>
-            </div>
-
-            <div className="space-y-1.5">
-              <label htmlFor="subject" className="flex items-center gap-1.5 text-sm font-semibold text-slate-700">
-                <MessageSquare className="h-3.5 w-3.5 text-primary" /> Subject <span className="text-primary">*</span>
-              </label>
+        ) : (
+          <>
+            <form onSubmit={handleSubmit} className="mt-4 space-y-4">
+              {/* Honeypot: hidden from users, catches bots. */}
               <input
-                id="subject"
-                name="subject"
-                value={formData.subject}
+                type="text"
+                name="company"
+                value={formData.company}
                 onChange={handleInputChange}
-                placeholder="What's this about?"
-                required
-                disabled={isSubmitting}
-                className={inputClass}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
               />
-            </div>
 
-            <div className="space-y-1.5">
-              <label htmlFor="message" className="text-sm font-semibold text-slate-700">
-                Message <span className="text-primary">*</span>
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                placeholder="Tell me about your project, opportunity, or question..."
-                rows={5}
-                required
-                disabled={isSubmitting}
-                className={`${inputClass} resize-y`}
-              />
-            </div>
-
-            {submitStatus === "success" && (
-              <div className="flex items-center gap-2 rounded-xl bg-primary/10 p-3 text-sm text-primary">
-                <CheckCircle className="h-5 w-5 shrink-0" />
-                <span>Message sent. Check your inbox for a confirmation, I'll be in touch soon.</span>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="space-y-1.5">
+                  <label htmlFor="name" className={labelClass}>
+                    Name <span className="text-primary">*</span>
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Your full name"
+                    required
+                    disabled={isSubmitting}
+                    className={inputClass}
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="email" className={labelClass}>
+                    Email <span className="text-primary">*</span>
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="your.email@example.com"
+                    required
+                    disabled={isSubmitting}
+                    className={inputClass}
+                  />
+                </div>
               </div>
-            )}
 
-            {submitStatus === "error" && (
-              <div className="flex items-center gap-2 rounded-xl bg-red-50 p-3 text-sm text-red-600">
-                <AlertCircle className="h-5 w-5 shrink-0" />
-                <span>{errorMessage || "Something went wrong. Please try again or email me directly."}</span>
+              <div className="space-y-1.5">
+                <label htmlFor="subject" className={labelClass}>
+                  Subject <span className="text-primary">*</span>
+                </label>
+                <input
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  placeholder="What's this about?"
+                  required
+                  disabled={isSubmitting}
+                  className={inputClass}
+                />
+                {/* Optional quick-start presets, right by the fields they fill. */}
+                <div className="flex flex-wrap items-center gap-2 pt-1">
+                  <span className="text-xs text-slate-400">Quick start:</span>
+                  {quickTemplates.map((template) => {
+                    const active = formData.subject === template.subject
+                    return (
+                      <button
+                        key={template.label}
+                        type="button"
+                        onClick={() => handleTemplateSelect(template)}
+                        className={
+                          active
+                            ? "rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground transition-colors"
+                            : "rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600 transition-colors hover:border-primary hover:text-primary"
+                        }
+                      >
+                        {template.label}
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
-            )}
 
-            <div className="flex gap-3 pt-2">
+              <div className="space-y-1.5">
+                <label htmlFor="message" className={labelClass}>
+                  Message <span className="text-primary">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Tell me about your project, opportunity, or question..."
+                  rows={4}
+                  required
+                  disabled={isSubmitting}
+                  className={`${inputClass} resize-y`}
+                />
+              </div>
+
+              {submitStatus === "error" && (
+                <div className="flex items-center gap-2 rounded-xl bg-red-50 p-3 text-sm text-red-600">
+                  <AlertCircle className="h-5 w-5 shrink-0" />
+                  <span>{errorMessage || "Something went wrong. Please try again or email me directly."}</span>
+                </div>
+              )}
+
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? (
                   <>
@@ -263,31 +250,20 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   </>
                 )}
               </button>
-              <button
-                type="button"
-                onClick={onClose}
-                className="rounded-full border border-slate-200 px-6 py-3 font-semibold text-slate-700 transition-colors hover:border-slate-400"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
+            </form>
 
-          {/* Footer */}
-          <div className="space-y-3 border-t border-slate-200 pt-5 text-center">
-            <p className="text-sm text-slate-500">I typically respond within 24 hours.</p>
-            <div className="flex flex-wrap justify-center gap-2">
-              {["AI & LLM Systems", "Backend Engineering", "Collaborations"].map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
+            <p className="mt-5 border-t border-slate-200 pt-4 text-center text-xs text-slate-500">
+              Prefer email?{" "}
+              <a href={`mailto:${EMAIL}`} className="font-medium text-primary hover:underline">
+                {EMAIL}
+              </a>
+              <span className="mx-1.5 text-slate-300">·</span>
+              {profile.location}
+              <span className="mx-1.5 text-slate-300">·</span>
+              Remote
+            </p>
+          </>
+        )}
       </DialogContent>
     </Dialog>
   )

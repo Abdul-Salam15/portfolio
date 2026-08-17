@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Quote } from "lucide-react"
+import { LogoImage } from "@/components/logo-image"
 import { type Recommendation } from "@/lib/data"
 
 function Avatar({ rec }: { rec: Recommendation }) {
@@ -51,14 +52,7 @@ export function RecommendationCard({ rec }: { rec: Recommendation }) {
           aria-label={`${rec.name} on LinkedIn`}
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-primary/10"
         >
-          <Image
-            src="/linkedin-logo.svg"
-            alt="LinkedIn"
-            width={20}
-            height={20}
-            sizes="20px"
-            className="h-5 w-5"
-          />
+          <LogoImage src="/linkedin-logo.svg" alt="LinkedIn" className="h-5 w-5" />
         </a>
       </div>
     </div>

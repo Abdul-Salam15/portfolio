@@ -29,6 +29,7 @@ import { HighlightRow } from "@/components/highlight-row"
 import { work, WorkCard } from "@/components/work-card"
 import { Marquee } from "@/components/marquee"
 import { RecommendationCard } from "@/components/recommendation-card"
+import { RecommendationProof } from "@/components/recommendation-proof"
 import { FadeIn, SlideInLeft, SlideInRight, StaggerIn } from "@/components/animations/reveal-animations"
 import { profile, experience, speakingImages, recommendations } from "@/lib/data"
 
@@ -222,8 +223,8 @@ export default function HomePage() {
         <section className="relative overflow-hidden bg-[#081a3d] text-white">
           <div className="absolute inset-0 bg-grid-pattern opacity-[0.07]" />
           <div className="absolute -top-40 right-0 h-[36rem] w-[36rem] rounded-full bg-primary/20 blur-[140px]" />
-          <div className="relative mx-auto grid min-h-[88vh] max-w-7xl items-center gap-12 px-6 py-24 lg:grid-cols-2">
-            <SlideInLeft className="space-y-8">
+          <div className="relative mx-auto grid min-h-[88vh] max-w-7xl items-center gap-10 px-6 py-12 md:gap-12 md:py-24 lg:grid-cols-2">
+            <SlideInLeft className="space-y-6 md:space-y-8">
               <p className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-accent-teal">
                 <span className="h-px w-8 bg-accent-teal" /> Adebayo Abdul-Malik
               </p>
@@ -236,6 +237,7 @@ export default function HomePage() {
                 across the US, Europe, Asia, the Gulf and Africa: RAG pipelines, agentic workflows and cloud, shipped
                 with reliability, security and scale.
               </p>
+              <RecommendationProof />
               <div className="flex flex-wrap gap-4">
                 <Link
                   href="/resume"
@@ -353,7 +355,7 @@ export default function HomePage() {
                         })}
                       </div>
                       <div className="mt-5 flex flex-wrap gap-2">
-                        {job.tags.map((t) => (
+                        {job.tags.slice(0, 3).map((t) => (
                           <span
                             key={t}
                             className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-500"
@@ -361,6 +363,11 @@ export default function HomePage() {
                             {t}
                           </span>
                         ))}
+                        {job.tags.length > 3 && (
+                          <span className="px-2 py-1 text-xs font-medium text-slate-400">
+                            +{job.tags.length - 3} more
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -412,7 +419,7 @@ export default function HomePage() {
         {/* 3b. RECOMMENDATIONS (light) — placed right after the work so the
             social proof is visible without scrolling far, and vouches for the
             projects the visitor just saw. */}
-        <section className="bg-slate-50 py-24 px-6">
+        <section id="recommendations" className="scroll-mt-20 bg-slate-50 py-24 px-6">
           <div className="mx-auto max-w-6xl">
             <FadeIn>
               <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">Recommendations</p>
