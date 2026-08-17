@@ -267,7 +267,7 @@ export const recommendations: Recommendation[] = [
   },
   {
     name: "Dansteve Adekanbi",
-    title: "Principal Software Engineer, Coutts · UK",
+    title: "Principal Software Engineer, AxiomFuse",
     relationship: "Worked on the same team",
     quote:
       "Abdul-Malik is one of the most self-directed engineers I have worked with. He can be handed a hard problem and trusted to reason through it and follow through to completion at a high standard. If you need someone who can be handed a hard problem and trusted to deliver it, Abdul-Malik is that person.",
@@ -277,7 +277,7 @@ export const recommendations: Recommendation[] = [
   },
   {
     name: "Wishmitha Mendis",
-    title: "Senior AI & Backend Engineer, BRDGE & Axiomfuse",
+    title: "Senior AI Engineer, BRDGE & Axiomfuse",
     relationship: "Senior across several products",
     quote:
       "What stood out immediately was his technical depth and his ability to take a problem from concept to a working, production-ready system with minimal handholding. I would work with him again without hesitation and recommend him strongly for senior AI and backend engineering roles.",
