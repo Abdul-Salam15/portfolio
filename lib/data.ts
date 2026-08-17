@@ -234,3 +234,55 @@ export const speakingImages: CarouselImage[] = [
     caption: "Bowen Tech Week",
   },
 ]
+
+export type Recommendation = {
+  name: string
+  /** Their own role / headline. */
+  title: string
+  /** How they worked with me: shown as the small primary-coloured line. */
+  relationship: string
+  /** Condensed pull-quote from the full LinkedIn recommendation. */
+  quote: string
+  /** Self-hosted headshot in public/. Falls back to `initials` if absent/broken. */
+  photo?: string
+  initials: string
+  linkedin: string
+}
+
+/**
+ * Condensed from the full LinkedIn recommendations. Headshots live in public/
+ * (self-hosted per the tech-logo convention); each card links back to the
+ * recommender's profile so a reader can verify it. Order: manager, peer, senior.
+ */
+export const recommendations: Recommendation[] = [
+  {
+    name: "Uday Kiran Talagana",
+    title: "Technical PM, BRDGE",
+    relationship: "Managed me directly",
+    quote:
+      "He worked across multiple projects simultaneously and consistently impressed me with his speed, quality of work, and ability to adapt in a fast-paced environment. A great team player and someone I would definitely recommend to any team looking for a strong AI engineer.",
+    photo: "/uday.jpg",
+    initials: "UT",
+    linkedin: "https://www.linkedin.com/in/uday-kiran-talagana-b387a413b/",
+  },
+  {
+    name: "Dansteve Adekanbi",
+    title: "Principal Software Engineer, Coutts · UK",
+    relationship: "Worked on the same team",
+    quote:
+      "Abdul-Malik is one of the most self-directed engineers I have worked with. He can be handed a hard problem and trusted to reason through it and follow through to completion at a high standard. If you need someone who can be handed a hard problem and trusted to deliver it, Abdul-Malik is that person.",
+    photo: "/dansteve.jpg",
+    initials: "DA",
+    linkedin: "https://www.linkedin.com/in/dansteve-adekanbi/",
+  },
+  {
+    name: "Wishmitha Mendis",
+    title: "Senior AI & Backend Engineer, BRDGE & Axiomfuse",
+    relationship: "Senior across several products",
+    quote:
+      "What stood out immediately was his technical depth and his ability to take a problem from concept to a working, production-ready system with minimal handholding. I would work with him again without hesitation and recommend him strongly for senior AI and backend engineering roles.",
+    photo: "/wishmitha.jpg",
+    initials: "WM",
+    linkedin: "https://www.linkedin.com/in/wishmithamendis/",
+  },
+]

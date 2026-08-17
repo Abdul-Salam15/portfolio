@@ -28,8 +28,9 @@ import { ImageCarousel } from "@/components/image-carousel"
 import { HighlightRow } from "@/components/highlight-row"
 import { work, WorkCard } from "@/components/work-card"
 import { Marquee } from "@/components/marquee"
+import { RecommendationCard } from "@/components/recommendation-card"
 import { FadeIn, SlideInLeft, SlideInRight, StaggerIn } from "@/components/animations/reveal-animations"
-import { profile, experience, speakingImages } from "@/lib/data"
+import { profile, experience, speakingImages, recommendations } from "@/lib/data"
 
 const GITHUB_URL = profile.github
 const LINKEDIN_URL = profile.linkedin
@@ -405,6 +406,38 @@ export default function HomePage() {
                 </Link>
               </div>
             </FadeIn>
+          </div>
+        </section>
+
+        {/* 3b. RECOMMENDATIONS (light) — placed right after the work so the
+            social proof is visible without scrolling far, and vouches for the
+            projects the visitor just saw. */}
+        <section className="bg-slate-50 py-24 px-6">
+          <div className="mx-auto max-w-6xl">
+            <FadeIn>
+              <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">Recommendations</p>
+              <h2 className="mb-4 font-display text-4xl font-bold text-slate-900 md:text-5xl">What people say.</h2>
+              <p className="mb-12 max-w-2xl text-lg text-slate-600">
+                The managers and engineers I've built with, in their own words.
+              </p>
+            </FadeIn>
+
+            <StaggerIn staggerDelay={0.1} className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {recommendations.map((rec) => (
+                <RecommendationCard key={rec.linkedin} rec={rec} />
+              ))}
+            </StaggerIn>
+
+            <div className="mt-10">
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-semibold text-primary transition-all hover:gap-3"
+              >
+                See all recommendations on LinkedIn <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
           </div>
         </section>
 

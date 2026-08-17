@@ -26,6 +26,7 @@ export type WorkItem = {
   desc: string
   role: string
   period?: string // when the work happened; rendered in the footer, not crammed into `role`
+  featured?: string[] // press / media mentions, shown as an "As featured in" line
   category: WorkCategory
   stack: string[]
   employer: string
@@ -71,6 +72,7 @@ export const work: WorkItem[] = [
     desc: "AI-powered apprenticeship platform. I built the complete backend and API layer for 22,000+ users and 10,000+ job listings, powering multiple dashboards for students and employers on one central backend.",
     role: "Backend & AI",
     period: "2024 – 2025",
+    featured: ["BBC", "Channel 4"],
     category: "AI & Backend",
     stack: ["Django", "PostgreSQL", "OpenAI", "Google Cloud Console", "Docker", "GitHub Actions"],
     employer: "BRDGE",
@@ -193,7 +195,14 @@ export function WorkCard({ item, showStack = false }: { item: WorkItem; showStac
         )}
       </div>
       <h3 className="text-lg font-bold text-slate-900">{item.title}</h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{item.desc}</p>
+      <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.desc}</p>
+      {item.featured && item.featured.length > 0 && (
+        <p className="mt-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs text-slate-500">
+          <span className="font-semibold uppercase tracking-widest text-slate-400">As featured in</span>
+          <span className="font-semibold text-slate-700">{item.featured.join(" · ")}</span>
+        </p>
+      )}
+      <div className="flex-1" />
       {showStack && (
         <div className="mt-5 flex flex-wrap gap-2">
           {item.stack.map((t) => (
