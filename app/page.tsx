@@ -213,6 +213,9 @@ export default function HomePage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const openContact = () => setIsContactModalOpen(true)
 
+  // Home spotlights the Axiomfuse role; the full history lives on /resume.
+  const homeExperience = experience.filter((job) => job.company === "Axiomfuse")
+
   return (
     <div className="home-redesign font-body">
       <IntroLoader />
@@ -303,10 +306,12 @@ export default function HomePage() {
             </FadeIn>
 
             <div className="relative">
-              {/* timeline line */}
-              <div className="absolute bottom-6 left-[11px] top-6 w-px bg-slate-200 md:left-[15px]" />
+              {/* timeline line — only meaningful when more than one role is shown */}
+              {homeExperience.length > 1 && (
+                <div className="absolute bottom-6 left-[11px] top-6 w-px bg-slate-200 md:left-[15px]" />
+              )}
               <StaggerIn staggerDelay={0.15} className="space-y-6">
-                {experience.slice(0, 3).map((job) => (
+                {homeExperience.map((job) => (
                   <div key={`${job.company}-${job.period}`} className="relative pl-10 md:pl-14">
                     {/* teal node */}
                     <span className="absolute left-0 top-8 flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 ring-4 ring-slate-50 md:h-8 md:w-8">
@@ -346,7 +351,7 @@ export default function HomePage() {
                                 </>
                               )}
                               <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                                <p className="font-semibold text-slate-900">{role.title}</p>
+                                <p className="text-balance font-semibold text-slate-900">{role.title}</p>
                                 {multi && <span className="text-xs font-medium text-slate-500">{role.period}</span>}
                               </div>
                               <p className="mt-1.5 leading-relaxed text-slate-600">{role.summary}</p>

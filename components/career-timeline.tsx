@@ -226,7 +226,7 @@ export function CareerTimeline({ experience, variant = "dark" }: { experience: J
                     return (
                       <div key={role.title}>
                         <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                          <p className={`font-semibold ${dark ? "text-white" : "text-slate-900"}`}>{role.title}</p>
+                          <p className={`text-balance font-semibold ${dark ? "text-white" : "text-slate-900"}`}>{role.title}</p>
                           {multi && (
                             <span className={`text-xs font-medium ${dark ? "text-slate-400" : "text-slate-500"}`}>
                               {role.period}
