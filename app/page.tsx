@@ -104,12 +104,14 @@ const highlights: { logo?: string; icon: LucideIcon; title: string; label: strin
     href: "https://www.linkedin.com/in/abdul-salam-adebayo",
   },
   {
+    logo: "/mllagos-logo.jpg",
     icon: Mic,
     title: "Machine Learning Lagos · Study/Research Group Lead",
     label: "Community · 500+ students",
     href: "https://www.linkedin.com/in/abdul-salam-adebayo",
   },
   {
+    logo: "/bowentechhub-logo.jpg",
     icon: Building2,
     title: "Bowen Tech Hub · Data Science & AI Community Lead",
     label: "Grew community 7 → 46 members",
