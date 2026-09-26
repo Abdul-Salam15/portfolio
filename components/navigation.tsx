@@ -47,7 +47,7 @@ export function Navigation() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between gap-4">
             <Link href="/" className="flex shrink-0 items-center" aria-label={`${profile.name}, home`}>
-              <Image src="/logo.png" alt={`${profile.name} logo`} width={60} height={20} priority />
+              <Image src="/logo.png" alt={`${profile.name} logo`} width={44} height={44} className="h-11 w-11" priority />
             </Link>
 
             {/* Pill + icons grouped on the right so the bar reads as one unit

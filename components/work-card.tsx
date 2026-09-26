@@ -44,14 +44,13 @@ export const workCategories: WorkCategory[] = ["AI & Backend", "Full-stack", "Au
 
 export const work: WorkItem[] = [
   {
-    icon: UserSearch,
-    title: "Casefile · AI Lead Research & Outreach Agent",
-    desc: "An AI lead-research and outreach agent for Koya Talent's outbound sales: given a one-line objective, it refines an Ideal Customer Profile with a human-review checkpoint, discovers and scrapes candidate companies, qualifies each against the ICP with cited evidence, and drafts (never sends) a 3-email sequence plus a LinkedIn message per qualified lead. Built on the Claude Agent SDK with structured MCP tools, per-phase tool allowlisting, an SSRF guard on scraping, and a full tool-call audit log, so every guardrail is enforced in code rather than only in a prompt.",
-    role: "Full-stack · AI Agent Engineering",
-    period: "2026",
-    category: ["Automation", "Full-stack"],
-    stack: ["Claude Agent SDK", "TypeScript", "Express", "Postgres", "Supabase", "MCP Tools", "Zod"],
-    employer: "Koya Talent",
+    icon: Sprout,
+    title: "FarmBuddy",
+    desc: "A full-stack multimodal AI agricultural advisory system built for Nigerian smallholder farmers, pairing OpenAI for reasoning with YarnGPT for multilingual text-to-speech across Hausa, Igbo, Yoruba and Nigerian English. Delivered as a PWA and a Telegram bot so it stays usable in low-data areas without a native app install. Validated with 80 users, scoring 89.56/100 (Excellent) on the System Usability Scale.",
+    role: "Full-stack · AI, Backend & Frontend",
+    period: "Dec 2025 – Aug 2026",
+    category: ["Full-stack"],
+    stack: ["Next.js", "Django", "OpenAI", "YarnGPT", "PWA", "Telegram Bot"],
   },
   {
     icon: FileSignature,
@@ -103,13 +102,14 @@ export const work: WorkItem[] = [
     employer: "Novus Realty",
   },
   {
-    icon: Sprout,
-    title: "FarmBuddy",
-    desc: "A full-stack multimodal AI agricultural advisory system built for Nigerian smallholder farmers, pairing OpenAI for reasoning with YarnGPT for multilingual text-to-speech across Hausa, Igbo, Yoruba and Nigerian English. Delivered as a PWA and a Telegram bot so it stays usable in low-data areas without a native app install. Validated with 80 users, scoring 89.56/100 (Excellent) on the System Usability Scale.",
-    role: "Full-stack · AI, Backend & Frontend",
-    period: "Dec 2025 – Aug 2026",
-    category: ["Full-stack"],
-    stack: ["Next.js", "Django", "OpenAI", "YarnGPT", "PWA", "Telegram Bot"],
+    icon: UserSearch,
+    title: "Casefile · AI Lead Research & Outreach Agent",
+    desc: "An AI lead-research and outreach agent for Koya Talent's outbound sales: given a one-line objective, it refines an Ideal Customer Profile with a human-review checkpoint, discovers and scrapes candidate companies, qualifies each against the ICP with cited evidence, and drafts (never sends) a 3-email sequence plus a LinkedIn message per qualified lead. Built on the Claude Agent SDK with structured MCP tools, per-phase tool allowlisting, an SSRF guard on scraping, and a full tool-call audit log, so every guardrail is enforced in code rather than only in a prompt.",
+    role: "Full-stack · AI Agent Engineering",
+    period: "2026",
+    category: ["Automation", "Full-stack"],
+    stack: ["Claude Agent SDK", "TypeScript", "Express", "Postgres", "Supabase", "MCP Tools", "Zod"],
+    employer: "Koya Talent",
   },
   {
     icon: ListChecks,
