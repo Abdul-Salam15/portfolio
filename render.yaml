@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: abdul-salam-portfolio
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    # next start defaults to port 3000; Render assigns its own port via $PORT,
+    # so it must be passed explicitly or the health check never succeeds.
+    startCommand: npx next start -p $PORT
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      # Secrets — left blank here on purpose. Render will prompt for these
+      # when the blueprint is applied; fill them in via the dashboard instead
+      # of committing real values to this file.
+      - key: GMAIL_USER
+        sync: false
+      - key: GMAIL_APP_PASSWORD
+        sync: false
+      - key: CONTACT_TO_EMAIL
+        sync: false
+      # Set this to the real onrender.com URL (or custom domain) once known,
+      # then redeploy — it's baked into metadata/sitemap/robots at build time.
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
