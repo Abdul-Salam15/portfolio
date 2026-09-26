@@ -4,7 +4,7 @@ import type React from "react"
 export const metadata: Metadata = {
   title: "Resume",
   description:
-    "Adebayo Abdul-Malik's career: LLM safety at Supernomics, DeFi and AI at Axiomfuse and BRDGE. Explore every role or download the CV.",
+    "Abdul-Salam Adebayo's career: software engineering at 4orge, product strategy at Merrowgate, and backend & data science at Synergy Solutions IMC LTD.",
   alternates: { canonical: "/resume" },
 }
 

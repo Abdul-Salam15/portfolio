@@ -37,7 +37,7 @@ function MiniAvatar({ rec }: { rec: Recommendation }) {
  * hero navy to separate the overlaps.
  */
 export function RecommendationProof({
-  label = "Recommended by leaders at BRDGE, Coutts & Axiomfuse",
+  label = "Recommended by managers and teammates",
 }: {
   label?: string
 }) {

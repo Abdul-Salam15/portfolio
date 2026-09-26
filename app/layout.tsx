@@ -21,7 +21,7 @@ const inter = Inter({
 })
 
 const description =
-  "Adebayo Abdul-Malik · AI & Backend Engineer. Production LLM systems, RAG pipelines and scalable backends serving 23K+ users across four continents."
+  "Abdul-Salam Adebayo · Software Engineer specializing in AI automation. Building agentic workflows, n8n orchestrations and full-stack AI systems shipped in Lagos."
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -35,15 +35,17 @@ export const metadata: Metadata = {
   creator: profile.name,
   keywords: [
     profile.name,
+    "Software Engineer",
+    "AI Automation",
     "AI Engineer",
-    "Backend Engineer",
-    "LLM",
+    "Full-Stack Developer",
+    "n8n",
     "RAG",
     "Agentic AI",
     "Machine Learning",
     "Django",
+    "Next.js",
     "Python",
-    "AWS",
     "Lagos",
     "Nigeria",
   ],

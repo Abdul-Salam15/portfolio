@@ -19,81 +19,59 @@ const EMAIL = profile.email
 
 const education = {
   school: "Bowen University",
-  degree: "BSc Computer Science",
+  degree: "BSc Computer Science · First Class Honours",
   location: "Osun State, Nigeria",
-  thesis: "Development of a Nigerian Sign Language Recognition System",
-  award: "Student Icon 360",
-  awardDesc: "Awarded to outstanding students excelling in academics, leadership, and Community Impact",
+  coursework:
+    "Statistical Methods, Discrete Structures, Data Structures and Algorithms, Programming in Low-Level Languages, Foundations of Sequential Programs, Knowledge Acquisition, System Analysis and Design",
+  award: "DataCamp Certifications",
+  awardDesc: "Working with the OpenAI API · Google: Agent Fundamentals · Introduction to AI Agents",
 }
 
 const leadership: HighlightItem[] = [
   {
     logo: "/gdg-logo.png",
-    title: "Google DevFest, Ibadan, Speaker",
-    label: "Talk · 3,000+",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7406264295312945153/",
-  },
-  {
-    logo: "/nyp-logo.jpg",
-    title: "Nigeria Youth Parliament, Speaker",
-    label: "Talk · 150+",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7425463424467464193/",
+    title: "GDG On Campus Bowen University, Co-Organizer",
+    label: "25 execs · 500+ students",
+    href: "https://www.linkedin.com/in/abdul-salam-adebayo",
   },
   {
     logo: "/btw-logo.jpg",
-    title: "Bowen Tech Week, Co-Founder",
-    label: "Co-Founder",
-    href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7335357587925688321/",
+    title: "Bowen Tech Week, President",
+    label: "1,000+ attendees",
+    href: "https://www.linkedin.com/in/abdul-salam-adebayo",
   },
   {
-    logo: "/nacos-logo.jpg",
-    title: "NACOS Bowen, President",
-    label: "President · 800+",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7231974579848531968/",
+    logo: "/mllagos-logo.jpg",
+    title: "Machine Learning Lagos, Study/Research Group Lead",
+    label: "500+ students",
+    href: "https://www.linkedin.com/in/abdul-salam-adebayo",
+  },
+  {
+    logo: "/bowentechhub-logo.jpg",
+    title: "Bowen Tech Hub, Data Science & AI Community Lead",
+    label: "Grew community 7 → 46",
+    href: "https://www.linkedin.com/in/abdul-salam-adebayo",
+  },
+  {
+    logo: "/theudaraproject-logo.png",
+    title: "TheUdaraProject, Campus Ambassador",
+    label: "Feb 2026 – May 2026",
+    href: "https://www.linkedin.com/in/abdul-salam-adebayo",
+  },
+  {
+    logo: "/dingpay-logo.png",
+    title: "Dingpay, Campus Ambassador",
+    label: "Sep 2025 – Jul 2026",
+    href: "https://www.linkedin.com/in/abdul-salam-adebayo",
   },
 ]
 
-const writing: HighlightItem[] = [
-  {
-    logo: "/linkedin-logo.svg",
-    title: "Shipping AI Solutions from Lagos to the World: A One-Year Retrospective",
-    label: "4k+ impressions",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7344298946644574209/",
-  },
-  {
-    logo: "/linkedin-logo.svg",
-    title: "Lessons from Google DevFest Ibadan: Building Scalable AI Systems",
-    label: "3,965 impressions",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7406264295312945153/",
-  },
-  {
-    logo: "/linkedin-logo.svg",
-    title: "A Year as President of NACOS Bowen: Innovation & Excellence",
-    label: "3,450 impressions",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7231974579848531968/",
-  },
-  {
-    logo: "/linkedin-logo.svg",
-    title: "AI and the Future of Work: Adapt, Don't Resist",
-    label: "1,437 impressions",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7425463424467464193/",
-  },
-]
+// No published articles/press yet — kept empty rather than fabricated titles.
+// Add real links here once you have them; the "Writing" / "Featured" subsections
+// below only render when their array is non-empty.
+const writing: HighlightItem[] = []
 
-const featured: HighlightItem[] = [
-  {
-    logo: "/axiomfuse-logo.png",
-    title: "Meet Abdul-Malik Adebayo: Software Engineer at Axiom Fuse",
-    label: "Feature",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7426573116140773376/",
-  },
-  {
-    logo: "/brdge-logo.png",
-    title: "Tech Journeys That Inspire: Abdul-Malik at Bowen Tech Week 2.0",
-    label: "Feature",
-    href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7335357587925688321/",
-  },
-]
+const featured: HighlightItem[] = []
 
 export default function AboutPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
@@ -119,8 +97,8 @@ export default function AboutPage() {
                 <span className="text-primary italic">behind the work.</span>
               </h1>
               <p className="max-w-xl text-lg leading-relaxed text-slate-400">
-                I'm Adebayo, an AI &amp; Backend Engineer from Lagos, building production LLM systems and scalable
-                backends for teams across four continents, from research all the way to reliable deployment.
+                I'm Abdul-Salam, a Software Engineer from Lagos specializing in AI automation, building agentic
+                workflows and full-stack AI systems that solve real problems end to end.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -147,8 +125,8 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="absolute inset-0 rounded-3xl bg-primary/10 blur-2xl" />
                 <Image
-                  src="https://res.cloudinary.com/dlgzlrzfh/image/upload/v1756197152/OBD_1848_cvlyxt.jpg"
-                  alt="Adebayo Abdul-Malik"
+                  src={profile.headshot}
+                  alt={profile.name}
                   width={640}
                   height={416}
                   sizes="(min-width: 1024px) 512px, 100vw"
@@ -158,20 +136,27 @@ export default function AboutPage() {
             </SlideInLeft>
             <SlideInRight className="space-y-6">
               <p className="text-sm font-bold uppercase tracking-widest text-primary">My story</p>
-              <h2 className="font-display text-4xl font-bold text-slate-900 md:text-5xl">From research to real-world.</h2>
+              <h2 className="font-display text-4xl font-bold text-slate-900 md:text-5xl">
+                Where access meets ambition.
+              </h2>
               <div className="space-y-4 text-lg leading-relaxed text-slate-600">
                 <p>
-                  My path started in AI research at Bowen University, where my final-year thesis built a Nigerian Sign
-                  Language recognition system, a project obsessed with correctness, evaluation and getting the details
-                  right.
+                  I grew up in Lagos wanting to build things, and studied Computer Science at Bowen University to
+                  learn how. What stuck with me wasn't the theory. It was noticing how much good technology never
+                  reaches the people who need it most: farmers priced out of AI tools, students without mentors,
+                  founders without a research team.
                 </p>
                 <p>
-                  Since then I've shipped production AI and backend systems for companies from San Francisco to London,
-                  Supernomics, Axiomfuse and BRDGE, serving clients across the US, Europe, Asia, the Gulf and Africa.
+                  So I've spent the last few years closing that gap from both ends. As a Software Engineer at 4orge,
+                  and through backend and data work at Merrowgate and Synergy Solutions IMC LTD, I build the
+                  infrastructure teams run on. Alongside that, I build AI agents and n8n workflows that automate the
+                  research, outreach and reporting a small team doesn't have time for, and FarmBuddy, an AI advisor
+                  that speaks to Nigerian farmers in their own languages instead of assuming English.
                 </p>
                 <p>
-                  What I care about most is the space where research rigour meets production reality: systems that are
-                  correct, and that also hold up at scale when real people depend on them.
+                  It all comes back to one belief: talent is everywhere, but access makes the difference. Whether
+                  that's an AI system that meets someone in their own language, or the sessions I run for 500+
+                  students at Machine Learning Lagos, I want to be on the access side of that equation.
                 </p>
               </div>
             </SlideInRight>
@@ -212,11 +197,11 @@ export default function AboutPage() {
                 </div>
                 <dl className="mt-6 grid gap-6 border-t border-slate-200 pt-6 sm:grid-cols-2">
                   <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500">Thesis</dt>
-                    <dd className="mt-1 text-sm text-slate-600">{education.thesis}</dd>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500">Coursework</dt>
+                    <dd className="mt-1 text-sm text-slate-600">{education.coursework}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500">Honors &amp; awards</dt>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500">Certifications</dt>
                     <dd className="mt-2 flex items-start gap-2.5">
                       <Award className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                       <span className="min-w-0">
@@ -251,35 +236,48 @@ export default function AboutPage() {
 
             <StaggerIn staggerDelay={0.08} className="border-t border-slate-200">
               {leadership.map((item) => (
-                <HighlightRow key={item.href} item={item} />
+                <HighlightRow key={item.title} item={item} />
               ))}
             </StaggerIn>
           </div>
         </section>
 
-        {/* 6. WRITING & FEATURES (light) */}
-        <section className="bg-slate-50 py-24 px-6">
-          <div className="mx-auto max-w-6xl">
-            <FadeIn>
-              <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">Writing &amp; Features</p>
-              <h2 className="mb-12 font-display text-4xl font-bold text-slate-900 md:text-5xl">Ideas worth sharing.</h2>
-            </FadeIn>
+        {/* 6. WRITING & FEATURES (light) — hidden entirely until there's real
+            writing/press content to show; no fabricated placeholder entries. */}
+        {(writing.length > 0 || featured.length > 0) && (
+          <section className="bg-slate-50 py-24 px-6">
+            <div className="mx-auto max-w-6xl">
+              <FadeIn>
+                <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">Writing &amp; Features</p>
+                <h2 className="mb-12 font-display text-4xl font-bold text-slate-900 md:text-5xl">
+                  Ideas worth sharing.
+                </h2>
+              </FadeIn>
 
-            <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Writing</p>
-            <StaggerIn staggerDelay={0.08} className="border-t border-slate-200">
-              {writing.map((item) => (
-                <HighlightRow key={item.href} item={item} />
-              ))}
-            </StaggerIn>
+              {writing.length > 0 && (
+                <>
+                  <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">Writing</p>
+                  <StaggerIn staggerDelay={0.08} className="border-t border-slate-200">
+                    {writing.map((item) => (
+                      <HighlightRow key={item.title} item={item} />
+                    ))}
+                  </StaggerIn>
+                </>
+              )}
 
-            <p className="mb-4 mt-12 text-xs font-bold uppercase tracking-widest text-slate-400">Featured</p>
-            <StaggerIn staggerDelay={0.08} className="border-t border-slate-200">
-              {featured.map((item) => (
-                <HighlightRow key={item.href} item={item} />
-              ))}
-            </StaggerIn>
-          </div>
-        </section>
+              {featured.length > 0 && (
+                <>
+                  <p className="mb-4 mt-12 text-xs font-bold uppercase tracking-widest text-slate-400">Featured</p>
+                  <StaggerIn staggerDelay={0.08} className="border-t border-slate-200">
+                    {featured.map((item) => (
+                      <HighlightRow key={item.title} item={item} />
+                    ))}
+                  </StaggerIn>
+                </>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* 7. CONTACT CTA (dark) */}
         <section className="relative overflow-hidden bg-[#081a3d] py-28 px-6 text-center text-white">
@@ -318,9 +316,9 @@ export default function AboutPage() {
       <footer className="bg-[#081a3d] px-6 py-16 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[2fr_1fr_1fr]">
           <div>
-            <p className="font-display text-2xl font-extrabold">Adebayo Abdul-Malik</p>
+            <p className="font-display text-2xl font-extrabold">Abdul-Salam Adebayo</p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
-              AI &amp; Backend Engineer building production LLM systems, backends and cloud infrastructure.
+              Software Engineer specializing in AI automation, agentic systems and full-stack backends.
             </p>
           </div>
           <div>
@@ -354,7 +352,7 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-400 md:flex-row">
-          <span>© {new Date().getFullYear()} Adebayo Abdul-Malik.</span>
+          <span>© {new Date().getFullYear()} Abdul-Salam Adebayo.</span>
           <span>Lagos, Nigeria</span>
         </div>
       </footer>

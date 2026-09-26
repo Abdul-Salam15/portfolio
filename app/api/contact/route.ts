@@ -1,22 +1,24 @@
 import { NextResponse } from "next/server"
-import { Resend } from "resend"
+import nodemailer from "nodemailer"
 import { z } from "zod"
 import { profile } from "@/lib/data"
 
 /**
- * Contact endpoint. On a valid submission it sends TWO emails via Resend:
+ * Contact endpoint. On a valid submission it sends TWO emails via Gmail SMTP:
  *   1. a notification to the site owner (with the sender's message, reply-to set
  *      to the sender so a reply goes straight back to them), and
  *   2. a confirmation to the sender echoing what they wrote.
  *
- * Required env: RESEND_API_KEY.
+ * Required env:
+ *   GMAIL_USER            the Gmail address emails are sent from, e.g. asalamadebayo@gmail.com
+ *   GMAIL_APP_PASSWORD    a 16-character Google "App Password", NOT the account password.
+ *                         Generate one at https://myaccount.google.com/apppasswords
+ *                         (requires 2-Step Verification enabled on the Google account).
  * Recommended env:
- *   CONTACT_FROM_EMAIL  e.g. "Adebayo Abdul-Malik <hello@your-domain.com>"
- *                       Must be an address on a domain verified in Resend, otherwise
- *                       the confirmation email to arbitrary senders will not deliver.
- *                       Falls back to Resend's shared onboarding@resend.dev, which can
- *                       only deliver to the Resend account owner (fine for local testing).
- *   CONTACT_TO_EMAIL    where owner notifications go (defaults to the profile email).
+ *   CONTACT_TO_EMAIL      where owner notifications go (defaults to the profile email).
+ *
+ * Gmail SMTP only allows sending "from" the authenticated account itself, so unlike a
+ * transactional-email provider there's no separate FROM env var here.
  */
 
 const schema = z.object({
@@ -28,7 +30,6 @@ const schema = z.object({
   company: z.string().optional(),
 })
 
-const FROM = process.env.CONTACT_FROM_EMAIL || `${profile.name} <onboarding@resend.dev>`
 const TO = process.env.CONTACT_TO_EMAIL || profile.email
 const BLUE = "#034694"
 
@@ -67,10 +68,11 @@ function messageBlock(message: string) {
 }
 
 export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_KEY
-  if (!apiKey) {
+  const gmailUser = process.env.GMAIL_USER
+  const gmailPass = process.env.GMAIL_APP_PASSWORD
+  if (!gmailUser || !gmailPass) {
     return NextResponse.json(
-      { ok: false, error: "Email service is not configured. Set RESEND_API_KEY." },
+      { ok: false, error: "Email service is not configured. Set GMAIL_USER and GMAIL_APP_PASSWORD." },
       { status: 500 },
     )
   }
@@ -94,11 +96,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true })
   }
 
-  const resend = new Resend(apiKey)
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: { user: gmailUser, pass: gmailPass },
+  })
+  const FROM = `${profile.name} <${gmailUser}>`
 
   try {
     // 1. Notify the owner.
-    const ownerRes = await resend.emails.send({
+    await transporter.sendMail({
       from: FROM,
       to: TO,
       replyTo: email,
@@ -113,32 +119,34 @@ export async function POST(request: Request) {
       ),
     })
 
-    if (ownerRes.error) {
-      console.error("Resend owner-notification failed:", ownerRes.error)
-      const detail =
-        process.env.NODE_ENV === "development"
-          ? ownerRes.error.message || "Resend rejected the send."
-          : "Could not send your message. Please try again."
-      return NextResponse.json({ ok: false, error: detail }, { status: 502 })
+    // 2. Confirm to the sender. Best-effort: if this one fails we don't fail the
+    // whole request, the owner still got it.
+    try {
+      await transporter.sendMail({
+        from: FROM,
+        to: email,
+        subject: `Thanks for reaching out, ${name.split(" ")[0]}`,
+        html: shell(
+          `Thanks, ${escapeHtml(name.split(" ")[0])}. I got your message`,
+          `<p style="margin:0 0 16px;color:#334155;line-height:1.6;">Thanks for getting in touch. I typically respond within 24 hours. Here's a copy of what you sent:</p>
+           <p style="margin:0 0 8px;color:#334155;"><strong>Subject:</strong> ${escapeHtml(subject)}</p>
+           ${messageBlock(message)}
+           <p style="margin:16px 0 0;color:#334155;line-height:1.6;">Talk soon,<br/>${escapeHtml(profile.name)}</p>`,
+        ),
+      })
+    } catch (confirmError) {
+      console.error("Sender-confirmation email failed:", confirmError)
     }
 
-    // 2. Confirm to the sender. Best-effort: if this one fails (e.g. no verified
-    // domain configured yet) we don't fail the whole request, the owner still got it.
-    await resend.emails.send({
-      from: FROM,
-      to: email,
-      subject: `Thanks for reaching out, ${name.split(" ")[0]}`,
-      html: shell(
-        `Thanks, ${escapeHtml(name.split(" ")[0])}. I got your message`,
-        `<p style="margin:0 0 16px;color:#334155;line-height:1.6;">Thanks for getting in touch. I typically respond within 24 hours. Here's a copy of what you sent:</p>
-         <p style="margin:0 0 8px;color:#334155;"><strong>Subject:</strong> ${escapeHtml(subject)}</p>
-         ${messageBlock(message)}
-         <p style="margin:16px 0 0;color:#334155;line-height:1.6;">Talk soon,<br/>${escapeHtml(profile.name)}</p>`,
-      ),
-    })
-
     return NextResponse.json({ ok: true })
-  } catch {
-    return NextResponse.json({ ok: false, error: "Something went wrong sending your message." }, { status: 500 })
+  } catch (error) {
+    console.error("Gmail owner-notification failed:", error)
+    const detail =
+      process.env.NODE_ENV === "development"
+        ? error instanceof Error
+          ? error.message
+          : "Gmail SMTP rejected the send."
+        : "Could not send your message. Please try again."
+    return NextResponse.json({ ok: false, error: detail }, { status: 502 })
   }
 }

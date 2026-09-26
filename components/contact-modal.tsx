@@ -19,18 +19,18 @@ const quickTemplates = [
     label: "Collaboration",
     subject: "Collaboration Opportunity",
     message:
-      "Hi Adebayo,\n\nI'm interested in discussing a potential collaboration. I'd love to learn more about your work and explore how we might work together.\n\nBest regards,",
+      "Hi Abdul-Salam,\n\nI'm interested in discussing a potential collaboration. I'd love to learn more about your work and explore how we might work together.\n\nBest regards,",
   },
   {
     label: "Job Opportunity",
     subject: "Job Opportunity",
     message:
-      "Hi Adebayo,\n\nI came across your portfolio and I'm impressed by your work in AI and backend engineering. We have an opportunity that might interest you.\n\nBest regards,",
+      "Hi Abdul-Salam,\n\nI came across your portfolio and I'm impressed by your work in AI and software engineering. We have an opportunity that might interest you.\n\nBest regards,",
   },
   {
     label: "General Inquiry",
     subject: "General Inquiry",
-    message: "Hi Adebayo,\n\nI have a question about your work and would love to connect.\n\nBest regards,",
+    message: "Hi Abdul-Salam,\n\nI have a question about your work and would love to connect.\n\nBest regards,",
   },
 ]
 
@@ -258,9 +258,9 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 {EMAIL}
               </a>
               <span className="mx-1.5 text-slate-300">·</span>
-              {profile.location}
+              {profile.phone}
               <span className="mx-1.5 text-slate-300">·</span>
-              Remote
+              {profile.location}
             </p>
           </>
         )}

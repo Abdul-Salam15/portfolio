@@ -5,18 +5,20 @@ import { cn } from "@/lib/utils"
 
 /**
  * First-load intro: cycles a few words, reveals the brand, then a four-panel
- * curtain lifts to expose the page. Plays once per session, and is skipped
- * entirely for reduced-motion users.
+ * curtain lifts to expose the page. Plays on every real document load (a full
+ * refresh included), and is skipped entirely for reduced-motion users.
  *
  * Rendered on every top-level page, not just home, because plenty of visitors
  * arrive on a shared deep link (/portfolio, /resume) and would otherwise never
- * see it. The `introSeen` session flag means only the FIRST page opened plays
- * it; every later page in that session renders nothing.
+ * see it. The `mountedThisDocument` module flag means only the FIRST page
+ * opened in a given document load plays it; a later client-side navigation
+ * (e.g. Home -> About without a refresh) renders nothing, since that isn't a
+ * new document load.
  *
  * Timing mirrors brdge.ai's intro (wordDur 780, out lead 240, brand 560).
  */
-const WORDS = ["Backend.", "Agentic AI.", "LLMs.", "RAG.", "Cloud & DevOps."]
-const CLOSER = "Abdul-Malik Adebayo" // final brand beat; blue period is appended
+const WORDS = ["Backend.", "AI Automation.", "Agentic AI.", "RAG.", "Full-Stack."]
+const CLOSER = "Abdul-Salam Adebayo" // final brand beat; blue period is appended
 
 const SETTLE_MS = 120 // small buffer after fonts/paint are ready before the first word
 const WORD_MS = 780 // each word's visible window (brdge: wordDur)
@@ -58,19 +60,11 @@ export function IntroLoader() {
     if (!isEntryPage) return
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    let seen = false
-    try {
-      seen = sessionStorage.getItem("introSeen") === "1"
-    } catch {}
 
-    if (reduced || seen) {
+    if (reduced) {
       setPhase("hidden")
       return
     }
-
-    try {
-      sessionStorage.setItem("introSeen", "1")
-    } catch {}
 
     document.body.style.overflow = "hidden"
 

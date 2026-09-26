@@ -38,7 +38,7 @@ export default function OpengraphImage() {
         </div>
 
         <div style={{ display: "flex", fontSize: "28px", color: "#cbd5e1" }}>
-          {`Production LLM systems · RAG · Agentic AI · Scalable backends · ${profile.location}`}
+          {`AI Automation · Agentic Systems · Full-Stack Engineering · ${profile.location}`}
         </div>
       </div>
     ),

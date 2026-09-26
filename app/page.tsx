@@ -13,7 +13,7 @@ import {
   BrainCircuit,
   Server,
   Sparkles,
-  Cloud,
+  Workflow,
   ExternalLink,
   Mic,
   Building2,
@@ -38,99 +38,82 @@ const LINKEDIN_URL = profile.linkedin
 const EMAIL = profile.email
 
 const capabilities = [
-  "Applied AI",
-  "LLM Systems",
-  "RAG Pipelines",
+  "Full-Stack Development",
   "Agentic AI",
-  "Forward-Deployed Engineering",
+  "RAG Pipelines",
+  "LLM Integration",
   "Backend Engineering",
   "API Design",
-  "SaaS",
-  "Cloud & DevOps",
-  "LLM Safety",
-  "Fine-Tuning",
-  "ML Engineering",
+  "Multimodal AI",
+  "Machine Learning",
+  "Explainable AI",
+  "Data Science",
+  "Prompt Engineering",
+  "AI Automation",
 ]
 
 const heroStats = [
-  { value: `${work.length}`, label: "Products shipped" },
-  { value: "23K+", label: "Users reached" },
-  { value: "4", label: "Continents" },
+  { value: "10+", label: "Projects shipped" },
+  { value: "500+", label: "Students mentored" },
 ]
 
 const services = [
   {
     no: "01",
-    title: "AI Research & Development",
-    icon: BrainCircuit,
-    desc: "Building and evaluating ML, NLP and computer-vision systems with a focus on correctness and real-world use.",
-    tags: ["NLP", "Computer Vision", "Fine-tuning"],
+    title: "Backend & Full-Stack Engineering",
+    icon: Server,
+    desc: "RESTful APIs and full-stack apps with Django, Next.js and Express, built for real users rather than demos.",
+    tags: ["Django", "Next.js", "Express"],
   },
   {
     no: "02",
-    title: "Backend Engineering",
-    icon: Server,
-    desc: "Scalable, high-performance APIs and services that stay reliable under real production load.",
-    tags: ["Django", "Node.js", "PostgreSQL"],
+    title: "AI Automation",
+    icon: Workflow,
+    desc: "Event-driven n8n workflows that wire Claude into real business data, from inbox triage to executive reporting, with guardrails and audit logging built in.",
+    tags: ["n8n", "Claude API", "Workflow Automation"],
   },
   {
     no: "03",
-    title: "LLM, RAG & Agentic Systems",
-    icon: Sparkles,
-    desc: "LLM assistants and agents using RAG, the Model Context Protocol and multi-model orchestration.",
-    tags: ["RAG", "Agents", "MCP"],
+    title: "AI & Agentic Systems",
+    icon: BrainCircuit,
+    desc: "Multimodal AI agents and RAG pipelines that reason over real data, from prototype through to something people actually use.",
+    tags: ["RAG", "Agentic AI", "OpenAI"],
   },
   {
     no: "04",
-    title: "Cloud & DevOps",
-    icon: Cloud,
-    desc: "Containerised deployments and CI/CD pipelines on AWS and GCP, built for scale and repeatability.",
-    tags: ["AWS", "GCP", "Docker"],
+    title: "Applied Machine Learning",
+    icon: Sparkles,
+    desc: "Classification, explainable AI and model evaluation, from exploratory analysis through to a system people can trust.",
+    tags: ["Scikit-Learn", "XGBoost", "SHAP"],
   },
 ]
 
 const highlights: { logo?: string; icon: LucideIcon; title: string; label: string; href: string }[] = [
   {
     logo: "/gdg-logo.png",
-    icon: Mic,
-    title: "Google DevFest · From Lagos to the World: Building Scalable AI Systems That Deliver Impact.",
-    label: "Talk · 3K+ attendees",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7406264295312945153/",
+    icon: Building2,
+    title: "GDG On Campus Bowen University · Co-Organizer",
+    label: "Community · 25 execs, 500+ students",
+    href: "https://www.linkedin.com/in/abdul-salam-adebayo",
   },
   {
-    logo: "/linkedin-logo.svg",
-    icon: FileText,
-    title: "Shipping AI Solutions from Lagos to the World",
-    label: "Article · 4K+ impressions",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7344298946644574209/",
-  },
-  {
-    logo: "/nyp-logo.jpg",
-    icon: Mic,
-    title: "Nigeria Youth Parliament: AI & the Future of Work",
-    label: "Talk · 150+ attendees",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7425463424467464193/",
-  },
-  {
-    logo: "/nacos-logo.jpg",
+    logo: "/btw-logo.jpg",
     icon: Award,
-    title: "Nigeria Association of Computing Students, Bowen University · President",
-    label: "Leadership · 800+ members",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7231974579848531968/",
+    title: "Bowen Tech Week · President",
+    label: "Leadership · 1,000+ attendees",
+    href: "https://www.linkedin.com/in/abdul-salam-adebayo",
   },
   {
-    logo: "/axiomfuse-logo.png",
-    icon: Building2,
-    title: "Meet Abdul-Malik Adebayo: Software Engineer at Axiom Fuse",
-    label: "Feature",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7426573116140773376/",
+    icon: Mic,
+    title: "Machine Learning Lagos · Study/Research Group Lead",
+    label: "Community · 500+ students",
+    href: "https://www.linkedin.com/in/abdul-salam-adebayo",
   },
   {
-    logo: "/brdge-logo.png",
     icon: Building2,
-    title: "Tech Journeys That Inspire: Abdul-Malik at Bowen Tech Week 2.0",
-    label: "Feature",
-    href: "https://www.linkedin.com/feed/update/urn:li:ugcPost:7335357587925688321/",
+    title: "Bowen Tech Hub · Data Science & AI Community Lead",
+    label: "Grew community 7 → 46 members",
+    href: "https://www.linkedin.com/in/abdul-salam-adebayo",
   },
 ]
 
@@ -213,8 +196,8 @@ export default function HomePage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const openContact = () => setIsContactModalOpen(true)
 
-  // Home spotlights the Axiomfuse role; the full history lives on /resume.
-  const homeExperience = experience.filter((job) => job.company === "Axiomfuse")
+  // Home spotlights the current role; the full history lives on /resume.
+  const homeExperience = experience.filter((job) => job.company === "4orge")
 
   return (
     <div className="home-redesign font-body">
@@ -229,16 +212,15 @@ export default function HomePage() {
           <div className="relative mx-auto grid min-h-[88vh] max-w-7xl items-center gap-10 px-6 py-12 md:gap-12 md:py-24 lg:grid-cols-2">
             <SlideInLeft className="space-y-6 md:space-y-8">
               <p className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-accent-teal">
-                <span className="h-px w-8 bg-accent-teal" /> Adebayo Abdul-Malik
+                <span className="h-px w-8 bg-accent-teal" /> Abdul-Salam Adebayo
               </p>
               <h1 className="font-display text-5xl font-extrabold leading-[1.05] md:text-7xl">
                 Where AI meets <br />
                 <span className="text-primary italic">real-world impact.</span>
               </h1>
               <p className="max-w-xl text-lg leading-relaxed text-slate-400">
-                AI &amp; Backend Engineer building production LLM systems and scalable infrastructure for clients
-                across the US, Europe, Asia, the Gulf and Africa: RAG pipelines, agentic workflows and cloud, shipped
-                with reliability, security and scale.
+                Software Engineer specializing in AI automation, building agentic workflows, RAG pipelines and
+                full-stack backends that solve real problems, not just demos.
               </p>
               <RecommendationProof />
               <div className="flex flex-wrap gap-4">
@@ -255,7 +237,7 @@ export default function HomePage() {
                   Work with me <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
-              <div className="grid max-w-lg grid-cols-3 gap-6 border-t border-white/10 pt-8">
+              <div className="grid max-w-lg grid-cols-2 gap-6 border-t border-white/10 pt-8">
                 {heroStats.map((s) => (
                   <div key={s.label}>
                     <div className="font-display text-3xl font-bold text-white">{s.value}</div>
@@ -268,13 +250,13 @@ export default function HomePage() {
             <SlideInRight className="relative mx-auto w-full max-w-md">
               <div className="absolute inset-0 bg-primary/20 blur-[90px]" />
               <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-                {/* The Cloudinary c_crop tightens the full-length studio shot to a head-and-shoulders
-                    portrait: it cuts below the chest (hands and watch sat at y~1560 of 2738) and its
-                    1469x1574 output matches the 448x480 frame, so object-cover has nothing left to
-                    trim. g_face/z_* are silently ignored on this account, hence the explicit crop. */}
+                {/* TEMP: profile.headshot is a square LinkedIn photo, so object-cover on this
+                    portrait frame crops the sides more than a purpose-shot photo would. Swap in
+                    a proper headshot (and add a Cloudinary c_crop like the previous owner's, if
+                    it needs one) once you have one hosted permanently. */}
                 <Image
-                  src="https://res.cloudinary.com/dlgzlrzfh/image/upload/c_crop,x_177,y_452,w_1469,h_1574/v1756197152/OBD_1829_puui1n.jpg"
-                  alt="Adebayo Abdul-Malik"
+                  src={profile.headshot}
+                  alt={profile.name}
                   width={448}
                   height={480}
                   priority
@@ -423,35 +405,38 @@ export default function HomePage() {
 
         {/* 3b. RECOMMENDATIONS (light) — placed right after the work so the
             social proof is visible without scrolling far, and vouches for the
-            projects the visitor just saw. */}
-        <section id="recommendations" className="scroll-mt-20 bg-slate-50 py-24 px-6">
-          <div className="mx-auto max-w-6xl">
-            <FadeIn>
-              <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">Recommendations</p>
-              <h2 className="mb-4 font-display text-4xl font-bold text-slate-900 md:text-5xl">What people say.</h2>
-              <p className="mb-12 max-w-2xl text-lg text-slate-600">
-                The managers and engineers I've built with, in their own words.
-              </p>
-            </FadeIn>
+            projects the visitor just saw. Hidden entirely while `recommendations`
+            in lib/data.ts is empty (no testimonials yet). */}
+        {recommendations.length > 0 && (
+          <section id="recommendations" className="scroll-mt-20 bg-slate-50 py-24 px-6">
+            <div className="mx-auto max-w-6xl">
+              <FadeIn>
+                <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">Recommendations</p>
+                <h2 className="mb-4 font-display text-4xl font-bold text-slate-900 md:text-5xl">What people say.</h2>
+                <p className="mb-12 max-w-2xl text-lg text-slate-600">
+                  The managers and engineers I've built with, in their own words.
+                </p>
+              </FadeIn>
 
-            <StaggerIn staggerDelay={0.1} className="grid grid-cols-1 gap-6 md:grid-cols-3">
-              {recommendations.map((rec) => (
-                <RecommendationCard key={rec.linkedin} rec={rec} />
-              ))}
-            </StaggerIn>
+              <StaggerIn staggerDelay={0.1} className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                {recommendations.map((rec) => (
+                  <RecommendationCard key={rec.linkedin} rec={rec} />
+                ))}
+              </StaggerIn>
 
-            <div className="mt-10">
-              <a
-                href={LINKEDIN_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-semibold text-primary transition-all hover:gap-3"
-              >
-                See all recommendations on LinkedIn <ArrowRight className="h-4 w-4" />
-              </a>
+              <div className="mt-10">
+                <a
+                  href={LINKEDIN_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-semibold text-primary transition-all hover:gap-3"
+                >
+                  See all recommendations on LinkedIn <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* 4. WHAT I DO (dark) — carries the mid-page dark break that the old
             "Why I build" section used to provide. That section was removed: it
@@ -514,7 +499,7 @@ export default function HomePage() {
 
             <StaggerIn staggerDelay={0.08} className="border-t border-slate-200">
               {highlights.map((item) => (
-                <HighlightRow key={item.href} item={item} />
+                <HighlightRow key={item.title} item={item} />
               ))}
             </StaggerIn>
 
@@ -566,9 +551,9 @@ export default function HomePage() {
       <footer className="bg-[#081a3d] px-6 py-16 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[2fr_1fr_1fr]">
           <div>
-            <p className="font-display text-2xl font-extrabold">Adebayo Abdul-Malik</p>
+            <p className="font-display text-2xl font-extrabold">Abdul-Salam Adebayo</p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
-              AI &amp; Backend Engineer building production LLM systems, backends and cloud infrastructure.
+              Software Engineer specializing in AI automation, agentic systems and full-stack backends.
             </p>
           </div>
           <div>
@@ -602,7 +587,7 @@ export default function HomePage() {
           </div>
         </div>
         <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-400 md:flex-row">
-          <span>© {new Date().getFullYear()} Adebayo Abdul-Malik.</span>
+          <span>© {new Date().getFullYear()} Abdul-Salam Adebayo.</span>
           <span>Lagos, Nigeria</span>
         </div>
       </footer>

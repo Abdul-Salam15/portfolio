@@ -1,5 +1,5 @@
 // Kept in sync with `siteUrl` in lib/data.ts (next.config can't import TS).
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.abdulmalikadebayo.com"
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://abdul-salam-adebayo.vercel.app"
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -13,24 +13,19 @@ const nextConfig = {
   },
   images: {
     // Large content images (hero, about photo, carousel) go through next/image
-    // and are optimized to AVIF/WebP. Cloudinary is the only remote host used.
+    // and are optimized to AVIF/WebP.
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [{ protocol: "https", hostname: "res.cloudinary.com" }],
+    remotePatterns: [
+      { protocol: "https", hostname: "res.cloudinary.com" },
+      // TEMP: profile.headshot is a signed LinkedIn CDN URL that expires ~Oct 2026.
+      // Remove this once it's replaced with a permanently hosted photo.
+      { protocol: "https", hostname: "media.licdn.com" },
+    ],
   },
-  async headers() {
-    return [
-      {
-        // The CV PDF duplicates the /resume page, and a PDF can't carry a
-        // <link rel="canonical"> tag, so Search Console flagged it as
-        // "Duplicate without user-selected canonical". The HTTP Link header is
-        // the PDF equivalent: it folds the file's signals into /resume.
-        source: "/Adebayo_Abdul-Malik.pdf",
-        headers: [
-          { key: "Link", value: `<${siteUrl}/resume>; rel="canonical"` },
-        ],
-      },
-    ]
-  },
+  // Once a real CV PDF is added back to public/, add a headers() rule here
+  // pointing its `Link: <${siteUrl}/resume>; rel="canonical"` so Search Console
+  // doesn't flag it as a duplicate of the /resume page (a PDF can't carry
+  // a <link rel="canonical"> tag itself).
 }
 
 export default nextConfig

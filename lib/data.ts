@@ -5,17 +5,20 @@
  * page and the resume because each page held its own copy.
  */
 
-export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://www.abdulmalikadebayo.com"
+export const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://abdul-salam-adebayo.vercel.app"
 
 export const profile = {
-  name: "Adebayo Abdul-Malik",
+  name: "Abdul-Salam Adebayo",
   /** Sitewide role label. Deliberately not "Senior" — let the work argue seniority. */
-  title: "AI & Backend Engineer",
+  title: "Software Engineer · AI Automation",
   location: "Lagos, Nigeria",
-  email: "abdulmalikadebayo1@gmail.com",
-  github: "https://github.com/abdulmalikadebayo",
-  linkedin: "https://www.linkedin.com/in/abdul-malik-adebayo-294161174/",
-  headshot: "https://res.cloudinary.com/dlgzlrzfh/image/upload/v1756197152/OBD_1829_puui1n.jpg",
+  email: "asalamadebayo@gmail.com",
+  phone: "+2348071261492",
+  github: "https://github.com/Abdul-Salam15",
+  linkedin: "https://www.linkedin.com/in/abdul-salam-adebayo",
+  /** TEMP: signed LinkedIn CDN URL — expires ~Oct 2026. Replace with a permanently hosted photo. */
+  headshot:
+    "https://media.licdn.com/dms/image/v2/D4E03AQG3fqpLkJqqsg/profile-displayphoto-crop_800_800/B4EZ_Gy1yFJYAI-/0/1785746647182?e=1792022400&v=beta&t=c8a5tfVi5lGIlZlJZ9e7JDaUrnpfPHoWJq50HPM7TcU",
 }
 
 export type ExperienceRole = {
@@ -41,144 +44,73 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    company: "Supernomics",
-    website: "https://www.supernomics.ai",
-    logo: "/supernomics-logo.svg",
-    logoType: "wordmark",
-    employment: "Contract",
-    location: "San Francisco, US · Remote",
-    period: "Jan 2026 – Present",
-    roles: [
-      {
-        title: "Senior AI Engineer (LLM & Applied ML)",
-        period: "Jan 2026 – Present",
-        summary:
-          "Modernising Electron.js desktop infrastructure for AI feature deployment, with activity tracking for ML training data and standards for embedding LLM capabilities.",
-        bullets: [
-          "Modernised Electron.js desktop infrastructure for AI features: refactoring, activity tracking for ML training data, and standards for embedding LLM capabilities.",
-        ],
-      },
-    ],
-    tags: ["Claude API", "Electron.js", "Python"],
-  },
-  {
-    company: "Axiomfuse",
-    website: "https://axiomfuse.com",
-    logo: "/axiomfuse-logo.png",
+    company: "4orge",
+    website: "https://www.linkedin.com/company/4orge/",
     employment: "Full-time",
-    location: "London, UK · Remote",
-    period: "Nov 2025 – Aug 2026",
+    location: "Lagos, Nigeria · Hybrid",
+    period: "Dec 2025 – Present",
     roles: [
       {
-        title: "Software Engineer (AI & Backend)",
-        period: "Nov 2025 – Aug 2026",
+        title: "Software Engineer",
+        period: "Dec 2025 – Present",
         summary:
-          "Backend and AI for a UK healthcare-staffing platform serving NHS Trusts: job matching, real-time data sync and compliance across four connected products, for 1,400+ medical professionals and 4,900+ filled jobs at an 87% satisfaction rate.",
+          "QA and backend engineering on a live consumer app and a secure voting platform, inside a fast-paced startup engineering team.",
         bullets: [
-          "Contributed to the backend and AI features of a UK-based healthcare staffing platform serving NHS Trusts across four connected products on a shared backend, covering intelligent job matching, real-time data sync and compliance tracking for 1,400+ medical professionals and 4,900+ filled jobs across the UK, at an 87% satisfaction rate.",
-          "Core member of a two-person full-stack team that built an AI-assisted report-writing platform and CRM for R&D tax consultancies, owning the data model, API layer and interface end to end; the platform's LLM-driven report engine and automated compliance checks now support hundreds of client claims.",
-          "Core member of a two-person backend and blockchain team that built self-custodial DeFi wallet infrastructure from inception, integrating Aave, Morpho, Kamino and Jito with real-time WebSocket position tracking across Ethereum and Solana, plus in-app calls and messaging.",
+          "Performed QA testing on \"The Gaffer\" application, identifying and documenting bugs to improve application reliability and code quality.",
+          "Collaborated on backend development of a secure voting platform, implementing accurate vote-handling logic within a fast-paced startup engineering team.",
         ],
       },
     ],
-    tags: [
-      "Django",
-      "PostgreSQL",
-      "OpenAI",
-      "React",
-      "Ethereum",
-      "Solana",
-      "WebSockets",
-      "Celery",
-      "Redis",
-      "AWS",
-      "Docker",
-      "GitHub Actions",
-    ],
+    tags: ["Backend Engineering", "QA Testing"],
   },
   {
-    company: "BRDGE",
-    website: "https://www.brdge.ai",
-    logo: "/brdge-logo.png",
-    employment: "Full-time",
-    location: "London, UK · Remote",
-    period: "Jun 2024 – Nov 2025",
+    company: "Merrowgate",
+    website: "https://www.linkedin.com/company/merrowgate/",
+    employment: "Internship",
+    location: "Nigeria · Remote",
+    period: "Feb 2026 – Apr 2026",
     roles: [
       {
-        title: "AI Development Analyst",
-        period: "Feb 2025 – Nov 2025",
+        title: "Software Engineering Intern",
+        period: "Feb 2026 – Apr 2026",
         summary:
-          "Shipped an Arabic–English legal chatbot on AWS Bedrock (Llama 3, 200+ queries/day) for a Saudi client, and delivered custom AI for clients across Europe, Asia and Africa.",
+          "Market and competitor research feeding technical specs and delivery roadmaps ahead of development.",
         bullets: [
-          "Built the backend and AI for D Jungle People's live iOS/Android leadership coaching app, running a T-GROW coaching protocol via LLM with pgvector RAG retrieval over the firm's coaching corpus; drove £100k+ in new revenue within four months of launch and a 20% lift in post-workshop retention.",
-          "Built an AI voice companion with tool-calling architecture for a dementia-care app, integrating emotional prosody detection with a multi-step reasoning flow that triggers photo-based memory quizzes and escalates distress signals to human carers, bound to a clinical safeguarding spec.",
-          "Led end to end development of an Arabic English legal chatbot using Llama 3 and Legal GPT via AWS Bedrock, with retrieval built on a LlamaIndex RAG pipeline over client uploaded documents, handling 200+ queries daily for a Saudi based client with strict data sovereignty requirements",
-        ],
-      },
-      {
-        title: "AI Researcher & Engineer",
-        period: "Jun 2024 – Feb 2025",
-        summary:
-          "Built Apprentago's entire backend and API layer (22,000+ users, 10,000+ job listings) with RAG-powered AI assistants shipped on AWS & GCP.",
-        bullets: [
-          "Designed and built the complete backend architecture and API endpoints for Apprentago, a large-scale apprenticeship platform serving 22,000+ users and 10,000+ job listings, ensuring scalability, efficiency, and successful live deployment.",
-          "Built a Python-based job title standardization pipeline, processing over one million free-text job titles by correcting spelling errors and removing embedded locations, employment types, and seniority indicators, while preserving original source values for traceability",
-          "Developed LLM-powered AI assistants using RAG pipelines and fine-tuned models, deploying with Docker on AWS and GCP with CI/CD via GitHub Actions, maintaining security and NDA compliance across confidential client projects",
+          "Conducted competitor and market research to inform product positioning and technical strategy.",
+          "Applied project scoping and roadmapping to structure development timelines, defining milestones and delivery phases.",
+          "Authored technical specifications detailing system architecture and implementation requirements ahead of development.",
         ],
       },
     ],
-    tags: [
-      "Django",
-      "RAG",
-      "Llama 3",
-      "AWS Bedrock",
-      "LlamaIndex",
-      "FAISS",
-      "OpenAI",
-      "Whisper",
-      "React",
-      "PostgreSQL",
-      "GCP",
-      "Docker",
-      "GitHub Actions",
-    ],
+    tags: ["Project Scoping", "Technical Specifications"],
   },
   {
-    company: "Synergy Solutions",
-    location: "Remote",
-    period: "Sep 2023 – Oct 2023",
+    company: "Synergy Solutions IMC LTD",
+    employment: "Internship",
+    location: "Lagos, Nigeria · On-site",
+    period: "Jul 2024 – Sep 2025",
     roles: [
       {
-        title: "Data Scientist",
-        period: "Sep 2023 – Oct 2023",
+        title: "Data Science Intern",
+        period: "Jul 2024 – Jul 2025",
         summary:
-          "Introduced AI-powered tooling at a marketing agency to speed up campaign creation and content generation.",
+          "Built a churn-prediction model from raw HR data through to stakeholder-ready retention recommendations.",
         bullets: [
-          "Led technical initiatives at a growing marketing agency, introducing AI-powered tools to support campaign creation, automate routine tasks and boost client engagement.",
-          "Developed custom internal systems for AI-generated captions, ad copy and campaign briefs, helping non-technical staff create content faster.",
-          "Worked closely with non-technical staff to make AI accessible and practical, reducing content turnaround time and scaling output without adding headcount.",
+          "Developed a Logistic Regression model to predict employee churn, applying exploratory data analysis, feature engineering and hyperparameter tuning to improve model accuracy by 20%.",
+          "Cleaned and preprocessed datasets to ensure high-quality inputs for analysis and modelling, translating outputs into actionable retention recommendations for stakeholders.",
         ],
       },
-    ],
-    tags: ["Python", "NLP"],
-  },
-  {
-    company: "KPMG",
-    logo: "/kpmg-logo.svg",
-    logoType: "wordmark",
-    location: "Remote",
-    period: "Sep 2020 – Oct 2020",
-    roles: [
       {
-        title: "Data Analyst Intern",
-        period: "Sep 2020 – Oct 2020",
-        summary: "Completed KPMG's virtual data analytics internship: data quality, insights and presentation.",
+        title: "Backend Engineering Intern",
+        period: "Jul 2025 – Sep 2025",
+        summary: "Built a Task Management System with a RESTful API and Gemini-powered task recommendations.",
         bullets: [
-          "Completed the Data Quality Assessment, Data Insights and Presentation tasks as part of the KPMG virtual internship.",
+          "Built a Task Management System with RESTful API architecture, integrating the Gemini API for LLM-powered task recommendations.",
+          "Collaborated with senior engineers to design and implement scalable applications, optimising backend processes and reducing API response times.",
         ],
       },
     ],
-    tags: [],
+    tags: ["Python", "Django", "Gemini API", "Scikit-Learn", "RESTful APIs"],
   },
 ]
 
@@ -190,49 +122,14 @@ export type CarouselImage = {
 }
 
 /**
- * Every Cloudinary src MUST carry the `f_auto,q_auto:good,c_limit,w_1280` transform.
- * Without it Cloudinary serves the untouched original (the Bowen shots are ~5MB each),
- * and next/image's remote fetch gives up after ~7s, so the optimizer returns a 500 and
- * the slide renders as an empty box. With the transform they drop to ~400KB.
+ * No event/speaking photos yet — kept empty rather than reusing the previous
+ * owner's. ImageCarousel renders nothing when this is empty, so the Home and
+ * About "Speaking & Community" sections gracefully drop that block. Add
+ * entries here once you have your own photos (Cloudinary transform note:
+ * always include `f_auto,q_auto:good,c_limit,w_1280`, or next/image's remote
+ * fetch can time out on large originals).
  */
-export const speakingImages: CarouselImage[] = [
-  {
-    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1782981329/_80A8658_Original_x4gywk.jpg",
-    alt: "Adebayo speaking at Google DevFest, Ibadan",
-    caption: "Google DevFest, Ibadan",
-    fit: "contain",
-  },
-  {
-    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1782980810/IMG_2766_x8id0d.jpg",
-    alt: "Adebayo speaking at Google DevFest, Ibadan",
-    caption: "Google DevFest, Ibadan",
-  },
-  {
-    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1280/nyp1_eazyrn",
-    alt: "Adebayo speaking at the Nigeria Youth Parliament",
-    caption: "Nigeria Youth Parliament",
-  },
-  {
-    src: "https://res.cloudinary.com/x78tb87x/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1782980354/nyp2_tnqmfs.jpg",
-    alt: "Adebayo speaking at the Nigeria Youth Parliament",
-    caption: "Nigeria Youth Parliament",
-  },
-  {
-    src: "https://res.cloudinary.com/dlgzlrzfh/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1756196080/IMG_0711_cbcnks.jpg",
-    alt: "Adebayo speaking at Bowen Tech Week",
-    caption: "Bowen Tech Week",
-  },
-  {
-    src: "https://res.cloudinary.com/dlgzlrzfh/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1756196078/IMG_0713_zfi7bj.jpg",
-    alt: "Adebayo speaking at Bowen Tech Week",
-    caption: "Bowen Tech Week",
-  },
-  {
-    src: "https://res.cloudinary.com/dlgzlrzfh/image/upload/f_auto,q_auto:good,c_limit,w_1280/v1756196078/IMG_0712_hdy03t.jpg",
-    alt: "Adebayo speaking at Bowen Tech Week",
-    caption: "Bowen Tech Week",
-  },
-]
+export const speakingImages: CarouselImage[] = []
 
 export type Recommendation = {
   name: string
@@ -249,39 +146,9 @@ export type Recommendation = {
 }
 
 /**
- * Condensed from the full LinkedIn recommendations. Headshots live in public/
- * (self-hosted per the tech-logo convention); each card links back to the
- * recommender's profile so a reader can verify it. Order: manager, peer, senior.
+ * No LinkedIn recommendations received yet — kept empty rather than reusing
+ * the previous owner's testimonials (real people vouching for someone else).
+ * The Home page hides the "Recommendations" section entirely while this is
+ * empty. Add entries here once you have testimonials to show.
  */
-export const recommendations: Recommendation[] = [
-  {
-    name: "Uday Kiran Talagana",
-    title: "Technical PM, BRDGE",
-    relationship: "Managed me directly",
-    quote:
-      "He worked across multiple projects simultaneously and consistently impressed me with his speed, quality of work, and ability to adapt in a fast-paced environment. A great team player and someone I would definitely recommend to any team looking for a strong AI engineer.",
-    photo: "/uday.jpg",
-    initials: "UT",
-    linkedin: "https://www.linkedin.com/in/uday-kiran-talagana-b387a413b/",
-  },
-  {
-    name: "Dansteve Adekanbi",
-    title: "Principal Software Engineer, AxiomFuse",
-    relationship: "Worked on the same team",
-    quote:
-      "Abdul-Malik is one of the most self-directed engineers I have worked with. He can be handed a hard problem and trusted to reason through it and follow through to completion at a high standard. If you need someone who can be handed a hard problem and trusted to deliver it, Abdul-Malik is that person.",
-    photo: "/dansteve.jpg",
-    initials: "DA",
-    linkedin: "https://www.linkedin.com/in/dansteve-adekanbi/",
-  },
-  {
-    name: "Wishmitha Mendis",
-    title: "Senior AI Engineer, BRDGE & Axiomfuse",
-    relationship: "Senior across several products",
-    quote:
-      "What stood out immediately was his technical depth and his ability to take a problem from concept to a working, production-ready system with minimal handholding. I would work with him again without hesitation and recommend him strongly for senior AI and backend engineering roles.",
-    photo: "/wishmitha.jpg",
-    initials: "WM",
-    linkedin: "https://www.linkedin.com/in/wishmithamendis/",
-  },
-]
+export const recommendations: Recommendation[] = []

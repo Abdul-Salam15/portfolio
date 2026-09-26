@@ -2,20 +2,22 @@
 
 import {
   ArrowUpRight,
-  Baby,
-  Compass,
-  DraftingCompass,
-  HeartHandshake,
-  LineChart,
-  Scale,
-  Wallet,
-  Stethoscope,
+  Sprout,
+  ListChecks,
+  HeartPulse,
+  Activity,
+  UserSearch,
+  ListFilter,
+  Receipt,
+  BarChart3,
+  FileSignature,
+  Newspaper,
   type LucideIcon,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { LogoImage } from "@/components/logo-image"
 
-export type WorkCategory = "AI & Backend" | "Full-stack"
+export type WorkCategory = "AI & Backend" | "Full-stack" | "Automation"
 
 export type WorkItem = {
   clientLogo?: string // shown only where public / permitted
@@ -27,135 +29,115 @@ export type WorkItem = {
   role: string
   period?: string // when the work happened; rendered in the footer, not crammed into `role`
   featured?: string[] // press / media mentions, shown as an "As featured in" line
-  category: WorkCategory
+  /** A project can span more than one filter (e.g. a full-stack app built as an automation) — the
+   *  portfolio filter matches if the selected category is anywhere in this list. The item still
+   *  appears only once in "All", never duplicated per category. */
+  category: WorkCategory[]
   stack: string[]
-  employer: string
-  employerLogo: string
+  /** Omit for independent/personal projects — the footer credit line only renders when both are set. */
+  employer?: string
+  employerLogo?: string
   caseStudyUrl?: string // if the client is public (e.g. an employer case study), link it
 }
 
-const BRDGE_LOGO = "/brdge-logo.png"
-const AXIOMFUSE_LOGO = "/axiomfuse-logo.png"
-
-export const workCategories: WorkCategory[] = ["AI & Backend", "Full-stack"]
+export const workCategories: WorkCategory[] = ["AI & Backend", "Full-stack", "Automation"]
 
 export const work: WorkItem[] = [
   {
-    clientLogo: "/djp-logo.svg",
-    icon: Compass,
-    title: "Pocket Coach · D Jungle People",
-    desc: "Backend and AI for a voice-first leadership coach, live on iOS and Android, built for D Jungle People, a respected 20-year Southeast Asian coaching firm, and modelled on the founder's own coaching cadence. An LLM runs a strict T-GROW protocol from their proprietary frameworks: one question per turn, exploration before advice, and a confidence-scored close, with speech-to-text in, neural text-to-speech out, and vector retrieval over the coaching corpus. It reached £100k+ in new revenue within four months of launch, with a 20% lift in post-workshop retention.",
-    role: "Backend & AI",
-    period: "2025",
-    category: "AI & Backend",
-    stack: ["Django", "Whisper", "ElevenLabs", "RAG", "AWS", "S3", "Docker", "GitHub Actions"],
-    employer: "BRDGE",
-    employerLogo: BRDGE_LOGO,
-    caseStudyUrl: "https://www.brdge.ai/case-pocket-coach",
+    icon: UserSearch,
+    title: "Casefile · AI Lead Research & Outreach Agent",
+    desc: "An AI lead-research and outreach agent for Koya Talent's outbound sales: given a one-line objective, it refines an Ideal Customer Profile with a human-review checkpoint, discovers and scrapes candidate companies, qualifies each against the ICP with cited evidence, and drafts (never sends) a 3-email sequence plus a LinkedIn message per qualified lead. Built on the Claude Agent SDK with structured MCP tools, per-phase tool allowlisting, an SSRF guard on scraping, and a full tool-call audit log, so every guardrail is enforced in code rather than only in a prompt.",
+    role: "Full-stack · AI Agent Engineering",
+    period: "2026",
+    category: ["Automation", "Full-stack"],
+    stack: ["Claude Agent SDK", "TypeScript", "Express", "Postgres", "Supabase", "MCP Tools", "Zod"],
+    employer: "Koya Talent",
   },
   {
-    clientLogo: "/shyft-logo.png",
-    icon: Stethoscope,
-    title: "Shyft",
-    desc: "Contributed to the backend and AI behind Shyft, a cross-platform NHS healthcare-staffing ecosystem of four connected products: a mobile app for professionals plus internal, agency and hospital dashboards, all on one shared backend. Worked on the real-time data sync, automated compliance tracking and smart job-matching that connect 1,492+ medical professionals to 4,990+ jobs at an 87% satisfaction rate.",
-    role: "Backend & AI",
-    period: "2026 – present",
-    category: "AI & Backend",
-    stack: ["Python", "Django", "PostgreSQL", "OpenAI", "AWS", "Docker", "GitHub Actions"],
-    employer: "Axiomfuse",
-    employerLogo: AXIOMFUSE_LOGO,
-    caseStudyUrl: "https://axiomfuse.com/case-studies/shyft-healthcare",
+    icon: FileSignature,
+    title: "AI Proposal Generator",
+    desc: "An internal tool that drafts a client-ready sales proposal section by section from discovery-call notes, so a salesperson can review, hand-edit or regenerate any one section without touching the rest. Structured sections (deliverables, timeline, pricing) are forced through Claude tool-use schemas instead of parsed from prose, and nothing reaches a client until both the salesperson and a separate admin approve it, enforced at the API layer and again by Postgres Row-Level Security.",
+    role: "Full-stack · AI Document Generation",
+    period: "2026",
+    category: ["Automation", "Full-stack"],
+    stack: ["Next.js", "Claude API", "Supabase", "Postgres RLS", "Puppeteer"],
   },
   {
-    clientLogo: "/apprentago-logo.png",
-    title: "Apprentago",
-    desc: "AI-powered apprenticeship platform. I built the complete backend and API layer for 22,000+ users and 10,000+ job listings, powering multiple dashboards for students and employers on one central backend.",
-    role: "Backend & AI",
-    period: "2024 – 2025",
-    featured: ["BBC", "Channel 4"],
-    category: "AI & Backend",
-    stack: ["Django", "PostgreSQL", "OpenAI", "Google Cloud Console", "Docker", "GitHub Actions"],
-    employer: "BRDGE",
-    employerLogo: BRDGE_LOGO,
-    caseStudyUrl: "https://apprentago.co.uk/",
+    icon: ListFilter,
+    title: "Lead Triage System",
+    desc: "A pipeline that turns a messy inbound-leads CSV, any schema, any column names, into a ranked, explainable sales list. Fuzzy header matching and per-field cleaners normalize the data, rule-based disqualification filters out spam and non-buyers before any AI spend, and similar leads are clustered so one LLM call can characterize a whole group instead of every row, cutting LLM calls by up to 95%. Every final score ships with a plain-text breakdown of exactly how it was calculated.",
+    role: "Full-stack · Data Pipeline & Applied ML",
+    period: "2026",
+    category: ["Automation", "Full-stack"],
+    stack: ["Django", "React", "OpenAI GPT-4o-mini", "Unsupervised Clustering", "Rule-Based NLP"],
   },
   {
-    clientLogo: "/mlg-logo.png",
-    icon: HeartHandshake,
-    title: "Memory Lane Games",
-    desc: "I built the AI voice companion for Memory Lane Games, an established dementia-care app, adding an empathic conversational layer to their existing product. It reads emotional prosody in the voice, not just the words, and paces itself for elderly listeners. When someone reminisces it tool-calls into a photo memory quiz, read aloud and scored with error-less learning that never says the word wrong. Distress cues escalate to a human carer, and the whole behaviour is bound to a clinical safeguarding spec drawn from Validation Therapy.",
-    role: "AI & Backend",
-    period: "2025",
-    category: "AI & Backend",
-    stack: ["Hume EVI 3", "Claude Sonnet 4.5", "Tool calling", "Next.js", "TypeScript", "GitHub Actions"],
-    employer: "BRDGE",
-    employerLogo: BRDGE_LOGO,
-    caseStudyUrl: "https://www.memorylanegames.com/",
+    icon: BarChart3,
+    title: "AI Operations Reporting System",
+    desc: "An n8n orchestration for Koya AI Academy leadership that pulls sales, delivery and people-ops data from three unrelated sources, computes every metric in code (never in the LLM, to keep numbers deterministic), and hands only the calculated figures to Claude for an executive narrative, plus a public dashboard that reads the results straight from Supabase. Duplicate-report detection makes the workflow safe to re-trigger, and every metric that couldn't be calculated is surfaced with a reason, not a silent zero.",
+    role: "Workflow Automation & Analytics",
+    period: "2026",
+    category: ["Automation"],
+    stack: ["n8n", "Claude API", "Supabase", "Google Sheets API", "Airtable API"],
+    employer: "Koya AI Academy",
+    caseStudyUrl: "https://koya-operation-report.netlify.app/",
   },
   {
-    clientLogo: "/foresight-logo.png",
-    icon: LineChart,
-    title: "ForeSight",
-    desc: "As one of a two-person team, I built ForeSight full-stack, frontend, backend and AI: R&D tax report-writing software and CRM. I owned it end to end, from the data model and API layer through to the interface, with an LLM drafting the technical R&D tax reports at its core.",
+    icon: Newspaper,
+    title: "AI Content Research & Publishing Agent",
+    desc: "An event-driven content pipeline for Koya Talent: a raw idea becomes two SEO-checked, source-grounded article drafts, each scored against a quality rubric and automatically revised if weak, capped at 3 passes. A strategist picks a draft and a manager approves it before Claude adapts it for LinkedIn, X and a newsletter and drops the results into a publishing queue, with Supabase Realtime keeping the whole team's view live and a plain-language audit log covering every success and failure.",
+    role: "Workflow Automation · AI Content Pipeline",
+    period: "2026",
+    category: ["Automation"],
+    stack: ["n8n", "Claude API", "Supabase", "Postgres RLS", "Realtime"],
+    employer: "Koya Talent",
+  },
+  {
+    icon: Receipt,
+    title: "Intelligent Invoice Processing",
+    desc: "An event-driven n8n workflow for Novus Realty that watches an inbox, classifies whether an email is really an invoice, extracts vendor, amount, dates and currency with Claude, and checks for duplicates twice (before and after the LLM call) before writing one auditable row per outcome to a Google Sheet. Every failure mode, not a genuine invoice, missing fields, unreadable PDF, API error, is logged with its own status and reason rather than silently dropped.",
+    role: "Workflow Automation & AI Integration",
+    period: "2026",
+    category: ["Automation"],
+    stack: ["n8n", "Claude API", "Gmail API", "Google Sheets"],
+    employer: "Novus Realty",
+  },
+  {
+    icon: Sprout,
+    title: "FarmBuddy",
+    desc: "A full-stack multimodal AI agricultural advisory system built for Nigerian smallholder farmers, pairing OpenAI for reasoning with YarnGPT for multilingual text-to-speech across Hausa, Igbo, Yoruba and Nigerian English. Delivered as a PWA and a Telegram bot so it stays usable in low-data areas without a native app install. Validated with 80 users, scoring 89.56/100 (Excellent) on the System Usability Scale.",
     role: "Full-stack · AI, Backend & Frontend",
-    period: "2026 – present",
-    category: "Full-stack",
-    stack: ["Django", "LLM", "React", "PostgreSQL", "AWS", "Docker", "GitHub Actions"],
-    employer: "Axiomfuse",
-    employerLogo: AXIOMFUSE_LOGO,
-    caseStudyUrl: "https://axiomfuse.com/case-studies/foresight-tax",
+    period: "Dec 2025 – Aug 2026",
+    category: ["Full-stack"],
+    stack: ["Next.js", "Django", "OpenAI", "YarnGPT", "PWA", "Telegram Bot"],
   },
   {
-    clientLogo: "/snugsbaby-logo.png",
-    icon: Baby,
-    title: "Snugs Baby",
-    desc: "An AI weaning assistant for breastfeeding and early-stage mothers, built full-stack into the brand's existing Shopify store. Runs on OpenAI, grounded in NHS and WHO guidance via a RAG pipeline (FAISS + embeddings), with per-baby profiles and age-aware advice, voice, photo and document input, automatic safety checks on every response, food-introduction tracking and matched product recommendations from the Shopify catalogue.",
+    icon: ListChecks,
+    title: "Nexus",
+    desc: "A full-stack task manager with an auto-scheduling engine that packs pending tasks into upcoming weekdays based on deadline, priority and effort estimate, plus productivity analytics. AI task recommendations are powered by the Gemini API with a heuristic fallback when no API key is configured, alongside JWT authentication with refresh tokens and an email-based OTP password reset flow.",
     role: "Full-stack · AI, Backend & Frontend",
-    period: "2025",
-    category: "Full-stack",
-    stack: ["Django", "OpenAI", "RAG", "FAISS", "Whisper", "React", "Shopify", "AWS", "Docker", "GitHub Actions"],
-    employer: "BRDGE",
-    employerLogo: BRDGE_LOGO,
-    caseStudyUrl: "https://snugsbaby.com/",
+    period: "Aug 2025 – Jul 2026",
+    category: ["Full-stack"],
+    stack: ["React", "TypeScript", "Express", "Gemini API", "JWT"],
   },
   {
-    clientLogo: "/xcare-logo.svg",
-    icon: Wallet,
-    title: "XCARE Capital",
-    desc: "Core member of the two-person backend & blockchain team. Built the self-custodial wallet infrastructure from inception, integrating Aave, Morpho, Kamino & Jito with real-time position tracking across Ethereum & Solana, plus in-app calls and messaging.",
-    role: "Backend & Blockchain",
-    period: "2025 – present",
-    category: "AI & Backend",
-    stack: ["Ethereum", "Solana", "WebSockets", "Django", "Celery", "Redis", "AWS", "Docker", "GitHub Actions"],
-    employer: "Axiomfuse",
-    employerLogo: AXIOMFUSE_LOGO,
-    caseStudyUrl: "https://axiomfuse.com/case-studies/xcare-capital",
+    icon: HeartPulse,
+    title: "CardioXAI",
+    desc: "An explainable AI system that estimates coronary heart disease risk from self-reported lifestyle and demographic data alone, no lab tests required. Trained a weighted consensus ensemble (Logistic Regression, Random Forest, XGBoost) on the CDC's BRFSS dataset of 253,680 records, applying SMOTE for class imbalance and reaching 0.815 AUC-ROC. Every prediction ships with SHAP and LIME explainability, a model-disagreement confidence tier and an interactive risk-factor knowledge graph.",
+    role: "Applied Machine Learning",
+    period: "Jun 2026 – Jul 2026",
+    category: ["AI & Backend"],
+    stack: ["Python", "Scikit-Learn", "XGBoost", "SHAP", "LIME", "SMOTE"],
   },
   {
-    icon: Scale,
-    confidential: true,
-    title: "Arabic–English Legal Chatbot",
-    desc: "A bilingual English and Arabic legal assistant, built full-stack for a client with strict data-sovereignty needs, handling 200+ queries a day. Llama 3 on AWS Bedrock answers questions, grounded in documents users upload through a LlamaIndex RAG pipeline, with on-the-fly translation and a fully right-to-left Arabic interface. Owned it end to end: Django backend, the retrieval and language pipeline, and the React frontend.",
+    icon: Activity,
+    title: "VitalWatch",
+    desc: "A personal health-monitoring web app for logging daily vitals (heart rate, SpO2, temperature, steps) with instant anomaly detection, plus a medication reminder system with escalating in-app alarms and automated email alerts to caregivers when doses are missed. Includes a tokenized, read-only caregiver view requiring no login, with timezone-aware scheduling so reminders stay accurate to the patient's local time.",
     role: "Full-stack · AI, Backend & Frontend",
-    period: "2025",
-    category: "Full-stack",
-    stack: ["AWS Bedrock", "Llama 3", "LlamaIndex", "Django", "React", "PostgreSQL", "Docker", "GitHub Actions"],
-    employer: "BRDGE",
-    employerLogo: BRDGE_LOGO,
+    period: "May 2026 – Jul 2026",
+    category: ["Full-stack"],
+    stack: ["Anomaly Detection", "Medication Reminders", "Caregiver Alerts", "Timezone-aware Scheduling"],
   },
-  {
-    icon: DraftingCompass,
-    confidential: true,
-    title: "Engineering AI Assistant",
-    desc: "I took this from an exhibition prototype to a working product, built full-stack: an AI assistant for a building-services engineering firm. Engineers upload PDF drawings for entity recognition and CAD-readable conversion, then ask questions answered from the CIBSE guides and the client's own documentation. I built the retrieval on an in-process FAISS index of Titan embeddings, with Llama 3 on AWS Bedrock answering only from retrieved context and citing the source guide and page.",
-    role: "Full-stack · AI, Backend & Frontend",
-    period: "2025",
-    category: "Full-stack",
-    stack: ["AWS Bedrock", "Llama 3", "Titan Embeddings", "FAISS", "Django", "React", "Docker", "GitHub Actions"],
-    employer: "BRDGE",
-    employerLogo: BRDGE_LOGO,
-  },
-
 ]
 
 /**
@@ -216,21 +198,27 @@ export function WorkCard({ item, showStack = false }: { item: WorkItem; showStac
         </div>
       )}
       <p className="mt-5 text-xs font-bold uppercase tracking-widest text-primary">{item.role}</p>
-      {/* employer credit */}
-      <div className="mt-4 flex items-center gap-2 border-t border-slate-200 pt-4">
-        <span className="text-xs text-slate-500">
-          Built at <span className="font-semibold text-slate-900">{item.employer}</span>
-        </span>
-        <LogoImage
-          src={item.employerLogo}
-          alt={item.employer}
-          width={72}
-          height={24}
-          sizes="72px"
-          className="h-5 w-auto max-w-[72px] object-contain"
-        />
-        {item.period && <span className="ml-auto text-xs text-slate-500">{item.period}</span>}
-      </div>
+      {/* employer credit — only for work done under an employer; personal projects skip this row */}
+      {(item.employer || item.period) && (
+        <div className="mt-4 flex items-center gap-2 border-t border-slate-200 pt-4">
+          {item.employer && (
+            <span className="text-xs text-slate-500">
+              Built for <span className="font-semibold text-slate-900">{item.employer}</span>
+            </span>
+          )}
+          {item.employerLogo && (
+            <LogoImage
+              src={item.employerLogo}
+              alt={item.employer ?? ""}
+              width={72}
+              height={24}
+              sizes="72px"
+              className="h-5 w-auto max-w-[72px] object-contain"
+            />
+          )}
+          {item.period && <span className="ml-auto text-xs text-slate-500">{item.period}</span>}
+        </div>
+      )}
     </>
   )
 

@@ -15,9 +15,8 @@ const LINKEDIN_URL = profile.linkedin
 const EMAIL = profile.email
 
 const stats = [
-  { value: `${work.length}`, label: "Products shipped" },
-  { value: "23K+", label: "Users reached" },
-  { value: "4", label: "Continents" },
+  { value: "10+", label: "Projects shipped" },
+  { value: "500+", label: "Students mentored" },
 ]
 
 type Filter = WorkCategory | "All"
@@ -28,7 +27,7 @@ export default function PortfolioPage() {
   const [filter, setFilter] = useState<Filter>("All")
   const openContact = () => setIsContactModalOpen(true)
 
-  const visible = filter === "All" ? work : work.filter((item) => item.category === filter)
+  const visible = filter === "All" ? work : work.filter((item) => item.category.includes(filter))
 
   return (
     <div className="home-redesign font-body">
@@ -50,9 +49,9 @@ export default function PortfolioPage() {
                 <span className="text-primary italic">end to end.</span>
               </h1>
               <p className="max-w-xl text-lg leading-relaxed text-slate-400">
-                Production AI and backend systems I've built for teams in London, the Gulf and Southeast Asia, from
-                Lagos. Some clients are public, others stay confidential, so a few of these are described without the
-                name attached.
+                AI automation, agentic systems and full-stack AI projects I've built from Lagos, spanning n8n
+                workflows, a lead-research agent and applied ML, alongside backend and data science work at 4orge,
+                Merrowgate and Synergy Solutions IMC LTD.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link
@@ -68,7 +67,7 @@ export default function PortfolioPage() {
                   Work with me <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
-              <dl className="grid grid-cols-3 gap-6 border-t border-white/10 pt-8">
+              <dl className="grid grid-cols-2 gap-6 border-t border-white/10 pt-8">
                 {stats.map((s) => (
                   <div key={s.label}>
                     <dt className="font-display text-3xl font-extrabold text-white md:text-4xl">{s.value}</dt>
@@ -120,20 +119,18 @@ export default function PortfolioPage() {
         <section className="bg-white py-24 px-6">
           <div className="mx-auto max-w-5xl">
             <FadeIn>
-              <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">A note on confidentiality</p>
+              <p className="mb-4 text-sm font-bold uppercase tracking-widest text-primary">How I build</p>
               <h2 className="mb-6 font-display text-4xl font-bold text-slate-900 md:text-5xl">
-                Some of the best work stays quiet.
+                From idea to something people can use.
               </h2>
               <p className="max-w-2xl text-lg leading-relaxed text-slate-600">
-                Client engagements come with NDAs, so a few systems here are described by what they do rather than who
-                they were for. Where an employer has published a case study naming the client, I link straight to it.
-                Happy to talk through the architecture and trade-offs of any of them in a conversation.
+                Most of what's here started as a personal project rather than a client brief: a problem I noticed
+                (farmers priced out of AI tools, a health check that needed lab access) and then built end to end,
+                from the data model and API layer through to the interface people actually touch.
               </p>
               <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">
-                On the full-stack builds I own the AI and backend end to end, then build the interface myself, driving
-                coding assistants like Claude Code and Cursor to translate the Figma designs into working UI. It keeps
-                the delivery fast without handing off the parts that matter: the architecture, the model behaviour and
-                the API contract stay mine.
+                Happy to talk through the architecture and trade-offs of any of them, including the parts that didn't
+                work the first time.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
                 <button
@@ -190,9 +187,9 @@ export default function PortfolioPage() {
       <footer className="bg-[#081a3d] px-6 py-16 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[2fr_1fr_1fr]">
           <div>
-            <p className="font-display text-2xl font-extrabold">Adebayo Abdul-Malik</p>
+            <p className="font-display text-2xl font-extrabold">Abdul-Salam Adebayo</p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
-              AI &amp; Backend Engineer building production LLM systems, backends and cloud infrastructure.
+              Software Engineer specializing in AI automation, agentic systems and full-stack backends.
             </p>
           </div>
           <div>
@@ -226,7 +223,7 @@ export default function PortfolioPage() {
           </div>
         </div>
         <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-400 md:flex-row">
-          <span>© {new Date().getFullYear()} Adebayo Abdul-Malik.</span>
+          <span>© {new Date().getFullYear()} Abdul-Salam Adebayo.</span>
           <span>Lagos, Nigeria</span>
         </div>
       </footer>

@@ -2,13 +2,12 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowRight, Download, ExternalLink, Github, Linkedin, Mail } from "lucide-react"
+import { ArrowRight, ExternalLink, Github, Linkedin, Mail } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { IntroLoader } from "@/components/intro-loader"
 import { ContactModal } from "@/components/contact-modal"
 import { TechStack } from "@/components/tech-stack"
 import { CareerTimeline } from "@/components/career-timeline"
-import { Magnetic } from "@/components/magnetic"
 import { FadeIn, LineReveal } from "@/components/animations/reveal-animations"
 import { profile, experience } from "@/lib/data"
 
@@ -16,9 +15,8 @@ const GITHUB_URL = profile.github
 const LINKEDIN_URL = profile.linkedin
 const EMAIL = profile.email
 
-// Swap this file in public/ to refresh the downloadable CV. Keep the same filename so the link stays valid.
-const CV_PDF = "/Adebayo_Abdul-Malik.pdf"
-const CV_FILENAME = "Adebayo_Abdul-Malik_CV.pdf"
+// Hosted on Google Drive rather than a local PDF in public/ — swap this link if the CV moves.
+const CV_URL = "https://drive.google.com/file/d/1K59eHiAtalcQu52noZs9rlc8rdrHEY54/view?usp=sharing"
 
 export default function ResumePage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
@@ -46,29 +44,18 @@ export default function ResumePage() {
                 </h1>
               </LineReveal>
               <p className="max-w-xl text-lg leading-relaxed text-slate-400">
-                Every role, in full: the AI and backend systems I've shipped across San Francisco, London and the Gulf,
-                from research through to reliable production.
+                Every role, in full: the AI automation and full-stack systems I've shipped in Lagos, from research
+                through to reliable production.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Magnetic>
-                  <a
-                    href={CV_PDF}
-                    download={CV_FILENAME}
-                    className="flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
-                  >
-                    <Download className="h-4 w-4" /> Download PDF
-                  </a>
-                </Magnetic>
-                <Magnetic>
-                  <a
-                    href={CV_PDF}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 rounded-full border border-white/25 px-7 py-3.5 font-semibold transition-colors hover:border-white/60"
-                  >
-                    Open in new tab <ExternalLink className="h-4 w-4" />
-                  </a>
-                </Magnetic>
+                <a
+                  href={CV_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+                >
+                  Show my CV <ExternalLink className="h-4 w-4" />
+                </a>
               </div>
             </div>
           </div>
@@ -146,9 +133,9 @@ export default function ResumePage() {
       <footer className="bg-[#081a3d] px-6 py-16 text-white">
         <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[2fr_1fr_1fr]">
           <div>
-            <p className="font-display text-2xl font-extrabold">Adebayo Abdul-Malik</p>
+            <p className="font-display text-2xl font-extrabold">Abdul-Salam Adebayo</p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-400">
-              AI &amp; Backend Engineer building production LLM systems, backends and cloud infrastructure.
+              Software Engineer specializing in AI automation, agentic systems and full-stack backends.
             </p>
           </div>
           <div>
@@ -182,7 +169,7 @@ export default function ResumePage() {
           </div>
         </div>
         <div className="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-slate-400 md:flex-row">
-          <span>© {new Date().getFullYear()} Adebayo Abdul-Malik.</span>
+          <span>© {new Date().getFullYear()} Abdul-Salam Adebayo.</span>
           <span>Lagos, Nigeria</span>
         </div>
       </footer>
