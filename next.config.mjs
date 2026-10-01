@@ -12,9 +12,13 @@ const nextConfig = {
     ignoreDuringBuilds: false,
   },
   images: {
-    // Large content images (hero, about photo, carousel) go through next/image
-    // and are optimized to AVIF/WebP.
-    formats: ["image/avif", "image/webp"],
+    // WebP only: AVIF encoding is far more memory-hungry and was pushing the
+    // 512MB Render free instance over its limit. The size lists are trimmed
+    // so fewer variants get generated (and cached) per photo.
+    formats: ["image/webp"],
+    deviceSizes: [640, 828, 1200, 1920],
+    imageSizes: [64, 128, 256, 384],
+    minimumCacheTTL: 60 * 60 * 24 * 30,
     remotePatterns: [
       { protocol: "https", hostname: "res.cloudinary.com" },
       // TEMP: profile.headshot is a signed LinkedIn CDN URL that expires ~Oct 2026.
