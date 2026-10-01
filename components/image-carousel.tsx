@@ -53,6 +53,7 @@ export function ImageCarousel({ images, interval = 4000, className = "" }: Image
                   alt={image.alt}
                   aria-hidden="true"
                   fill
+                  loading="eager"
                   sizes="(min-width: 768px) 1152px, 100vw"
                   className="scale-110 object-cover opacity-40 blur-2xl"
                 />
@@ -62,6 +63,7 @@ export function ImageCarousel({ images, interval = 4000, className = "" }: Image
                 alt={image.alt}
                 fill
                 priority={index === 0}
+                loading="eager"
                 sizes="(min-width: 768px) 1152px, 100vw"
                 className={`relative ${contain ? "object-contain" : "object-cover"}`}
                 style={contain ? undefined : { objectPosition: image.position ?? "50% 25%" }}
