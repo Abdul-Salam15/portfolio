@@ -57,11 +57,13 @@ export const metadata: Metadata = {
     title: `${profile.name} · ${profile.title}`,
     description,
     locale: "en_US",
+    images: [{ url: profile.headshot, width: 800, height: 800, alt: profile.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${profile.name} · ${profile.title}`,
     description,
+    images: [profile.headshot],
   },
   robots: {
     index: true,
@@ -78,7 +80,7 @@ const personJsonLd = {
   jobTitle: profile.title,
   url: siteUrl,
   email: `mailto:${profile.email}`,
-  image: profile.headshot,
+  image: `${siteUrl}${profile.headshot}`,
   address: { "@type": "PostalAddress", addressLocality: "Lagos", addressCountry: "NG" },
   sameAs: [profile.github, profile.linkedin],
 }

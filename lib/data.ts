@@ -16,9 +16,7 @@ export const profile = {
   phone: "+2348071261492",
   github: "https://github.com/Abdul-Salam15",
   linkedin: "https://www.linkedin.com/in/abdul-salam-adebayo",
-  /** TEMP: signed LinkedIn CDN URL — expires ~Oct 2026. Replace with a permanently hosted photo. */
-  headshot:
-    "https://media.licdn.com/dms/image/v2/D4E03AQG3fqpLkJqqsg/profile-displayphoto-crop_800_800/B4EZ_Gy1yFJYAI-/0/1785746647182?e=1792022400&v=beta&t=c8a5tfVi5lGIlZlJZ9e7JDaUrnpfPHoWJq50HPM7TcU",
+  headshot: "/headshot.png",
 }
 
 export type ExperienceRole = {

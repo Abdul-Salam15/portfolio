@@ -3,7 +3,8 @@ import { ImageResponse } from "next/og"
 // Branded favicon: white "A." monogram on Chelsea blue, matching the intro
 // loader's brand beat. Generated at build time — replaces the generic globe
 // Google/browsers show by default.
-export const size = { width: 64, height: 64 }
+// 96px: Google only shows favicons whose size is a multiple of 48px.
+export const size = { width: 96, height: 96 }
 export const contentType = "image/png"
 
 export default function Icon() {
@@ -18,7 +19,7 @@ export default function Icon() {
           justifyContent: "center",
           background: "#034694",
           color: "#ffffff",
-          fontSize: 44,
+          fontSize: 66,
           fontWeight: 800,
           fontFamily: "sans-serif",
         }}

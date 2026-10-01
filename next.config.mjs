@@ -21,9 +21,6 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 30,
     remotePatterns: [
       { protocol: "https", hostname: "res.cloudinary.com" },
-      // TEMP: profile.headshot is a signed LinkedIn CDN URL that expires ~Oct 2026.
-      // Remove this once it's replaced with a permanently hosted photo.
-      { protocol: "https", hostname: "media.licdn.com" },
     ],
   },
   // Once a real CV PDF is added back to public/, add a headers() rule here
