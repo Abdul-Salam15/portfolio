@@ -10,6 +10,8 @@ export interface CarouselImage {
   caption?: string
   /** "cover" (default) fills the frame; "contain" shows the whole image on a blurred fill (for tall portraits). */
   fit?: "cover" | "contain"
+  /** CSS object-position for "cover" crops. Defaults to "50% 25%" so heads aren't cut off. */
+  position?: string
 }
 
 interface ImageCarouselProps {
@@ -62,6 +64,7 @@ export function ImageCarousel({ images, interval = 4000, className = "" }: Image
                 priority={index === 0}
                 sizes="(min-width: 768px) 1152px, 100vw"
                 className={`relative ${contain ? "object-contain" : "object-cover"}`}
+                style={contain ? undefined : { objectPosition: image.position ?? "50% 25%" }}
               />
               {image.caption && (
                 <span className="absolute bottom-4 left-4 rounded-full bg-black/50 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">

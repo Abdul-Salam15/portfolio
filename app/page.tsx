@@ -26,7 +26,8 @@ import { LogoImage } from "@/components/logo-image"
 import { ContactModal } from "@/components/contact-modal"
 import { ImageCarousel } from "@/components/image-carousel"
 import { HighlightRow } from "@/components/highlight-row"
-import { work, WorkCard } from "@/components/work-card"
+import { ProjectGallery } from "@/components/projects/project-gallery"
+import { featuredProjects } from "@/lib/projects"
 import { Marquee } from "@/components/marquee"
 import { RecommendationCard } from "@/components/recommendation-card"
 import { RecommendationProof } from "@/components/recommendation-proof"
@@ -386,11 +387,7 @@ export default function HomePage() {
               </h2>
             </FadeIn>
 
-            <StaggerIn staggerDelay={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {work.slice(0, 3).map((p) => (
-                <WorkCard key={p.title} item={p} />
-              ))}
-            </StaggerIn>
+            <ProjectGallery projects={featuredProjects} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" />
 
             <FadeIn>
               <div className="mt-12 flex justify-center">

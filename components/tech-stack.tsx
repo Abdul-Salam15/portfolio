@@ -26,11 +26,10 @@ export const techGroups: { label: string; items: Tech[] }[] = [
     ],
   },
   {
-    label: "Databases & Backend",
+    label: "Databases",
     items: [
       { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
       { name: "MySQL", logo: "/tech/mysql.svg" },
-      { name: "Supabase", logo: "/tech/supabase.svg" },
     ],
   },
   {
@@ -54,6 +53,8 @@ export const techGroups: { label: string; items: Tech[] }[] = [
       { name: "Google Sheets", logo: "/tech/googlesheets.svg" },
       { name: "Airtable", logo: "/tech/airtable.svg" },
       { name: "Apify", logo: "/tech/apify.svg" },
+      { name: "GoHighLevel", logo: "/tech/gohighlevel.svg" },
+      { name: "Vapi", logo: "/tech/vapi.svg" },
     ],
   },
   {
@@ -62,24 +63,9 @@ export const techGroups: { label: string; items: Tech[] }[] = [
       { name: "Docker", logo: "/tech/docker.svg" },
       { name: "Git", logo: "/tech/git.svg" },
       { name: "GitHub", logo: "/tech/github.svg" },
-      { name: "Postman", logo: "/tech/postman.svg" },
       { name: "Vercel", logo: "/tech/vercel.svg" },
       { name: "Render", logo: "/tech/render.svg" },
       { name: "Netlify", logo: "/tech/netlify.svg" },
-      { name: "Puppeteer", logo: "/tech/puppeteer.svg" },
-      { name: "JWT", logo: "/tech/jwt.svg" },
-    ],
-  },
-  {
-    label: "AI Coding Tools",
-    items: [
-      { name: "Claude Code", logo: "/tech/claude.svg" },
-      { name: "Claude Design", logo: "/tech/claude.svg" },
-      { name: "GitHub Copilot", logo: "/tech/githubcopilot.svg" },
-      { name: "Codex", logo: "/tech/openai.svg" },
-      { name: "Vercel v0", logo: "/tech/v0.svg" },
-      { name: "Antigravity", logo: "/tech/antigravity.svg" },
-      { name: "OpenCode", logo: "/tech/opencode.svg" },
     ],
   },
 ]

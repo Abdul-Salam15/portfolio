@@ -6,8 +6,9 @@ import { ArrowRight, FileText, Github, Linkedin, Mail } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { IntroLoader } from "@/components/intro-loader"
 import { ContactModal } from "@/components/contact-modal"
-import { work, workCategories, WorkCard, type WorkCategory } from "@/components/work-card"
-import { FadeIn, SlideInLeft, StaggerIn } from "@/components/animations/reveal-animations"
+import { ProjectGallery } from "@/components/projects/project-gallery"
+import { projects, projectCategories, type ProjectCategory } from "@/lib/projects"
+import { FadeIn, SlideInLeft } from "@/components/animations/reveal-animations"
 import { profile } from "@/lib/data"
 
 const GITHUB_URL = profile.github
@@ -19,15 +20,15 @@ const stats = [
   { value: "500+", label: "Students mentored" },
 ]
 
-type Filter = WorkCategory | "All"
-const filters: Filter[] = ["All", ...workCategories]
+type Filter = ProjectCategory | "All"
+const filters: Filter[] = ["All", ...projectCategories]
 
 export default function PortfolioPage() {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
   const [filter, setFilter] = useState<Filter>("All")
   const openContact = () => setIsContactModalOpen(true)
 
-  const visible = filter === "All" ? work : work.filter((item) => item.category.includes(filter))
+  const visible = filter === "All" ? projects : projects.filter((p) => p.categories.includes(filter))
 
   return (
     <div className="home-redesign font-body">
@@ -95,6 +96,7 @@ export default function PortfolioPage() {
                   <button
                     key={f}
                     onClick={() => setFilter(f)}
+                    aria-pressed={filter === f}
                     className={
                       filter === f
                         ? "rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-colors"
@@ -107,11 +109,12 @@ export default function PortfolioPage() {
               </div>
             </FadeIn>
 
-            <StaggerIn key={filter} staggerDelay={0.1} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {visible.map((item) => (
-                <WorkCard key={item.title} item={item} showStack />
-              ))}
-            </StaggerIn>
+            <ProjectGallery
+              projects={visible}
+              showStack
+              staggerKey={filter}
+              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            />
           </div>
         </section>
 

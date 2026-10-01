@@ -119,17 +119,43 @@ export type CarouselImage = {
   alt: string
   caption?: string
   fit?: "cover" | "contain"
+  position?: string
 }
 
 /**
- * No event/speaking photos yet — kept empty rather than reusing the previous
- * owner's. ImageCarousel renders nothing when this is empty, so the Home and
- * About "Speaking & Community" sections gracefully drop that block. Add
- * entries here once you have your own photos (Cloudinary transform note:
- * always include `f_auto,q_auto:good,c_limit,w_1280`, or next/image's remote
- * fetch can time out on large originals).
+ * Event/speaking photos for the Home and About carousels. Files live in
+ * `public/speaking/`, resized from the originals in `images/` to max 1920px
+ * (JPEG q80) so they stay a few hundred KB each. Portrait shots use
+ * `fit: "contain"` so faces aren't cropped by the landscape frame.
  */
-export const speakingImages: CarouselImage[] = []
+export const speakingImages: CarouselImage[] = [
+  {
+    src: "/speaking/dsc09813.jpg",
+    alt: "Group photo of event attendees outside a university building",
+    // people sit in the lower half of the frame; the default top-bias crops their feet
+    position: "50% 75%",
+  },
+  {
+    src: "/speaking/kik00032.jpg",
+    alt: "Abdul-Salam on the red carpet in front of the Bowen Tech Week 3.0 'The Intersection Advantage' backdrop",
+    caption: "Bowen Tech Week 3.0",
+  },
+  { src: "/speaking/screenshot.jpg", alt: "Abdul-Salam speaking at the Bowen University podium alongside two co-hosts" },
+  { src: "/speaking/img9432.jpg", alt: "Abdul-Salam seated with a microphone, addressing an audience at a community event" },
+  { src: "/speaking/wa0129.jpg", alt: "Abdul-Salam presenting a methodology slide to an auditorium" },
+  { src: "/speaking/obd0052.jpg", alt: "Students seated in a hall during a fireside session" },
+  { src: "/speaking/dsc09692.jpg", alt: "Attendees in blue auditorium seats listening to a session" },
+  {
+    src: "/speaking/kik08808.jpg",
+    alt: "Abdul-Salam receiving an award of recognition on stage",
+    fit: "contain",
+  },
+  {
+    src: "/speaking/dsc09697.jpg",
+    alt: "Abdul-Salam speaking into a microphone in front of a projector screen",
+    position: "50% 0%",
+  },
+]
 
 export type Recommendation = {
   name: string

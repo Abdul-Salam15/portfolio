@@ -31,7 +31,7 @@ function Avatar({ rec }: { rec: Recommendation }) {
 /**
  * Testimonial card: pull-quote plus attribution (photo/initials, name, role and
  * how they worked with me), with a link out to the recommender's LinkedIn so a
- * reader can verify it. Mirrors the WorkCard visual language.
+ * reader can verify it. Mirrors the ProjectCard visual language.
  */
 export function RecommendationCard({ rec }: { rec: Recommendation }) {
   return (
