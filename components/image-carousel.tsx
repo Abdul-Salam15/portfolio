@@ -24,6 +24,19 @@ interface ImageCarouselProps {
 export function ImageCarousel({ images, interval = 4000, className = "" }: ImageCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(interval > 0)
+  // Slides after the first two wait for the page's own load event, so their
+  // downloads don't compete with the JS/fonts the intro animation needs.
+  const [pageLoaded, setPageLoaded] = useState(false)
+
+  useEffect(() => {
+    if (document.readyState === "complete") {
+      setPageLoaded(true)
+      return
+    }
+    const onLoad = () => setPageLoaded(true)
+    window.addEventListener("load", onLoad)
+    return () => window.removeEventListener("load", onLoad)
+  }, [])
 
   const nextSlide = () => setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
   const prevSlide = () => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1))
@@ -44,6 +57,7 @@ export function ImageCarousel({ images, interval = 4000, className = "" }: Image
       >
         {images.map((image, index) => {
           const contain = image.fit === "contain"
+          const loading = index < 2 || pageLoaded ? "eager" : "lazy"
           return (
             <div key={index} className="relative h-96 w-full flex-shrink-0 overflow-hidden bg-muted md:h-[640px]">
               {contain && (
@@ -53,7 +67,7 @@ export function ImageCarousel({ images, interval = 4000, className = "" }: Image
                   alt={image.alt}
                   aria-hidden="true"
                   fill
-                  loading="eager"
+                  loading={loading}
                   sizes="(min-width: 768px) 1152px, 100vw"
                   className="scale-110 object-cover opacity-40 blur-2xl"
                 />
@@ -63,7 +77,7 @@ export function ImageCarousel({ images, interval = 4000, className = "" }: Image
                 alt={image.alt}
                 fill
                 priority={index === 0}
-                loading="eager"
+                loading={loading}
                 sizes="(min-width: 768px) 1152px, 100vw"
                 className={`relative ${contain ? "object-contain" : "object-cover"}`}
                 style={contain ? undefined : { objectPosition: image.position ?? "50% 25%" }}
