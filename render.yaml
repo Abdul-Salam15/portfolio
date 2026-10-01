@@ -14,9 +14,9 @@ services:
       # Secrets — left blank here on purpose. Render will prompt for these
       # when the blueprint is applied; fill them in via the dashboard instead
       # of committing real values to this file.
-      - key: GMAIL_USER
+      - key: RESEND_API_KEY
         sync: false
-      - key: GMAIL_APP_PASSWORD
+      - key: CONTACT_FROM_EMAIL
         sync: false
       - key: CONTACT_TO_EMAIL
         sync: false

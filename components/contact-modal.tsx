@@ -71,6 +71,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
+        signal: AbortSignal.timeout(20_000),
       })
       const data = await res.json().catch(() => ({}))
 
@@ -87,7 +88,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
         onClose()
       }, 2500)
     } catch {
-      setErrorMessage("Network error. Please try again or email me directly.")
+      setErrorMessage("That took too long or the network dropped. Please try again or email me directly.")
       setSubmitStatus("error")
     } finally {
       setIsSubmitting(false)
