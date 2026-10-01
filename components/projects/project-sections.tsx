@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, type ReactNode } from "react"
-import { Check, ExternalLink, FileText, Github, Lock, PlayCircle } from "lucide-react"
+import { Check, ExternalLink, FileText, Github, Loader2, Lock, PlayCircle } from "lucide-react"
 import type { Project } from "@/lib/projects"
 import { documentThumbnailUrl, videoEmbedUrl } from "@/lib/projects/embed"
 import { cn } from "@/lib/utils"
@@ -67,17 +67,25 @@ export function EdgeCases({ project: p }: { project: Project }) {
 }
 
 export function Video({ project: p }: { project: Project }) {
+  const [loaded, setLoaded] = useState(false)
   if (!p.videoUrl) return null
   const embed = videoEmbedUrl(p.videoUrl)
   return (
     <Section title="Video walkthrough">
       {embed ? (
-        <div className="aspect-video overflow-hidden rounded-2xl border border-slate-200 bg-slate-900">
+        <div className="relative aspect-video overflow-hidden rounded-2xl border border-slate-200 bg-slate-900">
+          {!loaded && (
+            <div className="absolute inset-0 flex items-center justify-center" role="status">
+              <Loader2 className="h-8 w-8 animate-spin text-white/70" aria-hidden="true" />
+              <span className="sr-only">Loading video…</span>
+            </div>
+          )}
           <iframe
             src={embed}
             title={`${p.title} video walkthrough`}
-            className="h-full w-full"
+            className="relative h-full w-full"
             loading="lazy"
+            onLoad={() => setLoaded(true)}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
           />
