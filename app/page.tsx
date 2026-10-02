@@ -253,10 +253,6 @@ export default function HomePage() {
             <SlideInRight className="relative mx-auto w-full max-w-md">
               <div className="absolute inset-0 bg-primary/20 blur-[90px]" />
               <div className="relative overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-                {/* TEMP: profile.headshot is a square LinkedIn photo, so object-cover on this
-                    portrait frame crops the sides more than a purpose-shot photo would. Swap in
-                    a proper headshot (and add a Cloudinary c_crop like the previous owner's, if
-                    it needs one) once you have one hosted permanently. */}
                 <Image
                   src={profile.headshot}
                   alt={profile.name}

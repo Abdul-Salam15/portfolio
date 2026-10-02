@@ -57,10 +57,10 @@ export const metadata: Metadata = {
     title: `${profile.name} · ${profile.title}`,
     description,
     locale: "en_US",
-    images: [{ url: profile.headshot, width: 800, height: 800, alt: profile.name }],
+    images: [{ url: profile.headshot, width: 1086, height: 1448, alt: profile.name }],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: `${profile.name} · ${profile.title}`,
     description,
     images: [profile.headshot],
