@@ -125,6 +125,51 @@ A Django and React app that accepts the CSV exactly as it comes. It maps each co
 
 ---
 
+## Voice Customer Support Agent
+
+- **Tag line:** Voice AI · Agents, RAG & Backend
+- **Timeline:** September 2026
+- **Built for:** Koya Talent
+- **Categories:** Automation, AI & Backend
+- **Featured on homepage:** No
+- **Tech stack:** Claude Agent SDK, MCP, Vapi, Supabase, TypeScript, Node.js
+
+### Card summary
+
+A support team can't hand every call to an AI, because some questions involve a customer's money. I built a voice agent for a fictional payments company that answers routine questions, verifies callers before touching their account, and passes anything risky to a specialist.
+
+### Impact
+
+- **Faster**: Routine questions answered on the call, so the support team isn't tied up with them
+- **Organised**: Every complaint is logged, prioritised and queued for a specialist with the details attached
+- **Safer**: No account information is shared until the caller has been verified
+
+### The problem
+
+The support team at RelayPay, a fictional cross-border payments company, was hard to scale. Some questions are repetitive and documented, like fees and timelines. Others involve a specific customer's money, need a human, or aren't covered anywhere. A voice channel makes this harder, because whatever the agent says is spoken aloud and can't be taken back, and speech recognition mishears names and references. A voice agent that's helpful on easy calls and wrong on hard ones would cost the business more than it saves.
+
+### The solution
+
+A caller talks to the agent in the browser. Every reply takes one of four paths: answer from the approved knowledge base, ask a clarifying question, escalate to a person, or decline when nothing reliable is found. Account questions go through a separate MCP server that only runs once the caller has been verified with their account email plus a name or company. Anything that needs a human is collected through an on-screen contact form and added to a specialist callback queue with a priority calculated on the server. The rules that must always hold are enforced in code rather than left to the prompt, and every call, tool use and decision is logged. A staff dashboard, customer portal, email notifications and an automated test suite complete the system.
+
+### Edge cases I covered
+
+- **The caller isn't verified yet**: The lookup tools refuse before querying anything, so an unverified caller can't even learn whether a reference exists.
+- **A verified caller asks about someone else's payment**: They get the same answer as for a reference that doesn't exist, so the reply reveals nothing about other customers.
+- **The knowledge base has no answer**: The agent declines instead of guessing, and the unanswered question is logged for staff to review.
+- **Speech recognition mishears a name**: Names are matched loosely, but every letter of the account email must match exactly.
+- **The agent is about to say something it shouldn't**: A filter on the output blocks emails, amounts and internal notes before they're spoken, and references are read out character by character.
+- **A case needs a person**: The priority is calculated from the category plus signals checked against the database, and the agent can only report times and case numbers that come back from a tool.
+
+### Links
+
+- **View code (GitHub):** https://github.com/Abdul-Salam15/Production-Customer-Support-Agent
+- **Live demo:** https://agent-backend-ct16.onrender.com/
+- **Video walkthrough:** https://drive.google.com/file/d/1goSP0GZAoR9PVaMWdwgTvoJ8c2uN7UiY/view?usp=drivesdk
+- **One-pager:** https://docs.google.com/document/d/1SwCBQS3nN1etHSOHMmPDaSzdZgfv5i9aiLT6EvzVMzo/edit?usp=sharing
+
+---
+
 ## AI Operations Reporting System
 
 - **Tag line:** Workflow Automation & Analytics

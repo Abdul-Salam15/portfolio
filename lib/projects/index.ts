@@ -2,6 +2,7 @@ import type { ProjectCategory } from "./types"
 import { farmbuddy } from "./farmbuddy"
 import { aiProposalGenerator } from "./ai-proposal-generator"
 import { leadTriage } from "./lead-triage"
+import { voiceSupportAgent } from "./voice-support-agent"
 import { aiOperationsReporting } from "./ai-operations-reporting"
 import { aiContentPipeline } from "./ai-content-pipeline"
 import { invoiceProcessing } from "./invoice-processing"
@@ -17,6 +18,7 @@ export const projects = [
   farmbuddy,
   aiProposalGenerator,
   leadTriage,
+  voiceSupportAgent,
   aiOperationsReporting,
   aiContentPipeline,
   invoiceProcessing,
