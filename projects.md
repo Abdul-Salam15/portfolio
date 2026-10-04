@@ -53,7 +53,7 @@ I built FarmBuddy around the three things most AI tools leave out: low-data acce
 - **Timeline:** 2026
 - **Built for:** Koya Talent
 - **Categories:** Full-stack, AI & Backend
-- **Featured on homepage:** Yes
+- **Featured on homepage:** No
 - **Tech stack:** Next.js, Claude API, Supabase, Postgres RLS, Puppeteer
 
 ### Card summary
@@ -131,7 +131,7 @@ A Django and React app that accepts the CSV exactly as it comes. It maps each co
 - **Timeline:** September 2026
 - **Built for:** Koya Talent
 - **Categories:** Automation, AI & Backend
-- **Featured on homepage:** No
+- **Featured on homepage:** Yes
 - **Tech stack:** Claude Agent SDK, MCP, Vapi, Supabase, TypeScript, Node.js
 
 ### Card summary

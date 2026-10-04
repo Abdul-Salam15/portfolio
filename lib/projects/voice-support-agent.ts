@@ -7,7 +7,7 @@ export const voiceSupportAgent: Project = {
   title: "Voice Customer Support Agent",
   icon: Headset,
   categories: ["Automation", "AI & Backend"],
-  featured: false,
+  featured: true,
   tagLine: "Voice AI · Agents, RAG & Backend",
   timeline: "September 2026",
   builtFor: "Koya Talent",

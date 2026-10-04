@@ -7,7 +7,7 @@ export const aiProposalGenerator: Project = {
   title: "AI Proposal Generator",
   icon: FileSignature,
   categories: ["Full-stack", "AI & Backend"],
-  featured: true,
+  featured: false,
   tagLine: "Full-stack · AI Document Generation",
   timeline: "2026",
   builtFor: "Koya Talent",
