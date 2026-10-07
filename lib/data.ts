@@ -44,7 +44,7 @@ export const experience: Experience[] = [
   {
     company: "4orge",
     website: "https://www.linkedin.com/company/4orge/",
-    employment: "Full-time",
+    employment: "Contract",
     location: "Lagos, Nigeria · Hybrid",
     period: "Dec 2025 – Present",
     roles: [
